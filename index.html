@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- SEARCH CONSOLE: replace YOUR_GSC_CODE -->
+<meta name="google-site-verification" content="YOUR_GSC_CODE" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WealthPath – Free Compound Interest & Savings Calculator</title>
+<meta name="description" content="Free compound interest calculator, savings goal planner, retirement projector, and inflation tool. See exactly how your money grows over time with interactive charts.">
+<meta name="keywords" content="compound interest calculator, savings calculator, retirement calculator, investment calculator, savings goal planner, inflation calculator">
+<link rel="canonical" href="https://wealthpath-production.up.railway.app/" />
+<meta property="og:title" content="WealthPath – Free Compound Interest & Savings Calculator">
+<meta property="og:description" content="Interactive calculators for compound interest, savings goals, retirement planning, and inflation. Free, no sign-up.">
+<meta property="og:type" content="website">
+<!-- ADSENSE: replace YOUR_PUB_ID with ca-pub-XXXXXXXXXXXXXXXX -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_PUB_ID" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:#f7f4ef;--s1:#fff;--s2:#f0ede6;--s3:#e8e3d8;
+  --border:#d8d2c4;--border2:#c8c0ae;
+  --navy:#1a2744;--navy2:#243356;--gold:#b8860b;--gold2:#daa520;
+  --green:#2d6a4f;--green2:#40916c;--red:#9b2226;
+  --text:#1a1a24;--text2:#4a4a5a;--text3:#8a8898;
+  --acc:#2563eb;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+a{color:var(--acc)}
+h1,h2,h3,h4{font-family:'DM Serif Display',serif}
+
+/* AD SLOTS */
+.ad-slot{background:var(--s2);border:1px dashed var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--text3);font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;overflow:hidden}
+/* DELETE this line after AdSense pub ID is active */
+.ad-slot ins{display:none!important}
+.ad-leader{height:90px;width:100%;margin:.5rem 0}
+.ad-banner{height:60px;width:100%;margin:.6rem 0}
+.ad-rect{width:300px;min-height:250px;flex-shrink:0}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:500;background:rgba(247,244,239,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
+.logo{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--navy)}
+.logo em{color:var(--gold);font-style:italic}
+.logo-sub{font-family:'Space Mono',monospace;font-size:.55rem;color:var(--text3);letter-spacing:.12em;margin-left:.5rem}
+.nav{display:flex;gap:.1rem}
+.nav a{font-family:'Space Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);padding:.38rem .7rem;border-radius:3px;transition:all .15s;white-space:nowrap;text-decoration:none}
+.nav a:hover,.nav a.active{color:var(--navy);background:var(--s3)}
+.nav-mob{display:none;background:none;border:1px solid var(--border);color:var(--text2);padding:.28rem .5rem;border-radius:3px;cursor:pointer;font-size:1.1rem}
+
+/* HERO */
+.hero{background:var(--navy);padding:3rem 1.5rem 2.5rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.02) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.02) 40px);pointer-events:none}
+.hero-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.hero h1{font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;line-height:1.1;margin-bottom:.65rem}
+.hero h1 em{color:var(--gold2);font-style:italic}
+.hero p{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.7;max-width:480px}
+.hero-badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:1.25rem 1.5rem;text-align:center;white-space:nowrap}
+.hero-badge-num{font-family:'DM Serif Display',serif;font-size:2.8rem;color:var(--gold2);line-height:1}
+.hero-badge-sub{font-family:'Space Mono',monospace;font-size:.55rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-top:.3rem}
+
+/* PAGE WRAP */
+.wrap{max-width:1300px;margin:0 auto;padding:0 1.5rem}
+.section{padding:2rem 0;border-bottom:1px solid var(--border);scroll-margin-top:56px}
+.sec-label{font-family:'Space Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);margin-bottom:.25rem}
+.sec-title{font-size:1.45rem;color:var(--navy);margin-bottom:.25rem}
+.sec-sub{font-size:.8rem;color:var(--text2);margin-bottom:1.4rem;line-height:1.6}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:start}
+.sidebar-col{display:none;flex-direction:column;gap:1rem}
+@media(min-width:1200px){.sidebar-col{display:flex}}
+
+/* CALC LAYOUT */
+.calc-layout{display:grid;grid-template-columns:380px 1fr;gap:1.5rem;align-items:start}
+@media(max-width:900px){.calc-layout{grid-template-columns:1fr}}
+.calc-panel{background:var(--s1);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
+.calc-panel h3{font-size:1.05rem;color:var(--navy);margin-bottom:.85rem;padding-bottom:.65rem;border-bottom:1px solid var(--border)}
+.results-panel{background:var(--navy);border-radius:8px;padding:1.5rem;color:#fff}
+.results-panel h3{font-family:'Space Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:.85rem;padding-bottom:.65rem;border-bottom:1px solid rgba(255,255,255,.1)}
+
+/* FORM */
+.field{margin-bottom:.9rem}
+.field label{display:flex;justify-content:space-between;align-items:baseline;font-family:'Space Mono',monospace;font-size:.58rem;color:var(--text2);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.06em}
+.field label span{color:var(--navy);font-size:.82rem;font-weight:700;font-family:'DM Serif Display',serif;letter-spacing:0;text-transform:none}
+.field input[type=range]{width:100%;-webkit-appearance:none;height:3px;background:var(--s3);border-radius:2px;cursor:pointer}
+.field input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:var(--navy);border-radius:50%;border:2px solid var(--s1);box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.field select{width:100%;background:var(--s2);border:1px solid var(--border);color:var(--text);padding:.35rem .5rem;border-radius:4px;font-family:'Space Mono',monospace;font-size:.7rem;cursor:pointer}
+.field select:focus{outline:none;border-color:var(--navy)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.btn{font-family:'Space Mono',monospace;font-size:.68rem;padding:.35rem .7rem;border:1px solid var(--border2);background:var(--s2);color:var(--text);cursor:pointer;border-radius:3px;transition:all .15s}
+.btn:hover{border-color:var(--navy);color:var(--navy)}
+.btn-primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-primary:hover{background:var(--navy2)}
+.tog-row{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.3rem}
+.tog{font-family:'Space Mono',monospace;font-size:.58rem;padding:.25rem .55rem;border:1px solid var(--border2);background:var(--s2);color:var(--text2);border-radius:2px;cursor:pointer;transition:all .15s}
+.tog:hover{border-color:var(--navy);color:var(--navy)}
+.tog.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* RESULTS */
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1.1rem}
+.res-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:.8rem}
+.res-card.hi{background:rgba(184,134,11,.15);border-color:rgba(218,165,32,.4)}
+.res-label{font-family:'Space Mono',monospace;font-size:.52rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.25rem}
+.res-val{font-family:'DM Serif Display',serif;font-size:1.5rem;color:#fff;line-height:1}
+.res-val.gold{color:var(--gold2)}
+.res-sub{font-family:'Space Mono',monospace;font-size:.55rem;color:rgba(255,255,255,.4);margin-top:.18rem}
+.chart-wrap{width:100%;height:200px;position:relative;margin:.85rem 0}
+.bd-toggle{font-family:'Space Mono',monospace;font-size:.58rem;color:rgba(255,255,255,.45);cursor:pointer;text-decoration:underline;margin-bottom:.5rem;display:inline-block}
+.bd-table{width:100%;border-collapse:collapse;font-family:'Space Mono',monospace;font-size:.58rem;display:none}
+.bd-table.show{display:table}
+.bd-table th{color:rgba(255,255,255,.4);padding:.3rem .45rem;text-align:right;font-weight:400;border-bottom:1px solid rgba(255,255,255,.1)}
+.bd-table th:first-child{text-align:left}
+.bd-table td{padding:.28rem .45rem;text-align:right;color:rgba(255,255,255,.7);border-bottom:1px solid rgba(255,255,255,.05)}
+.bd-table td:first-child{text-align:left;color:rgba(255,255,255,.45)}
+.verdict{margin:.5rem 0;padding:.65rem .8rem;border-radius:4px;font-family:'Space Mono',monospace;font-size:.65rem;line-height:1.6}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid var(--border);background:var(--s2);overflow-x:auto}
+.tab{font-family:'Space Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;padding:.65rem 1rem;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;transition:all .15s}
+.tab:hover{color:var(--navy)}
+.tab.active{color:var(--navy);border-bottom-color:var(--gold)}
+.tab-pane{display:none;padding:1.5rem 0}
+.tab-pane.active{display:block}
+
+/* CONTENT SECTIONS (articles, guides, faq) */
+.content-section{padding:2.5rem 0;border-bottom:1px solid var(--border)}
+.content-section h2{font-size:1.45rem;color:var(--navy);margin-bottom:.5rem}
+.content-section h3{font-size:1.05rem;color:var(--navy);margin:1.1rem 0 .4rem}
+.content-section p{font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:.65rem}
+.content-section ul,.content-section ol{font-size:.88rem;color:var(--text2);line-height:1.8;padding-left:1.25rem;margin-bottom:.75rem}
+.content-section li{margin-bottom:.25rem}
+.content-section .lead{font-size:.85rem;color:var(--text3);margin-bottom:1.1rem}
+.info-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:.85rem 1rem;font-size:.82rem;color:#1e40af;line-height:1.7;margin:.85rem 0}
+.warn-box{background:#fefce8;border:1px solid #fde68a;border-radius:6px;padding:.85rem 1rem;font-size:.82rem;color:#92400e;line-height:1.7;margin:.85rem 0}
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem;margin:1.25rem 0}
+.article-card{background:var(--s1);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.article-card h3{font-size:1rem;color:var(--navy);margin-bottom:.55rem;line-height:1.3;margin-top:0}
+.article-card p{font-size:.8rem;color:var(--text2);line-height:1.75;margin-bottom:.5rem}
+.article-card p:last-child{margin-bottom:0}
+.concept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.85rem;margin:1.1rem 0}
+.concept-card{background:var(--s1);border:1px solid var(--border);border-radius:6px;padding:1rem}
+.concept-card h4{font-size:.9rem;color:var(--navy);margin-bottom:.35rem}
+.concept-card p{font-size:.78rem;color:var(--text2);line-height:1.65}
+.formula-box{background:var(--s2);border:1px solid var(--border);border-radius:4px;padding:.5rem .75rem;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--navy);margin:.45rem 0}
+.r72-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.55rem;margin:1.1rem 0}
+.r72-card{background:var(--s1);border:1px solid var(--border);border-radius:5px;padding:.75rem;text-align:center;transition:all .2s}
+.r72-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.r72-rate{font-family:'DM Serif Display',serif;font-size:1.55rem;color:var(--navy)}
+.r72-years{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--text2)}
+.r72-lbl{font-family:'Space Mono',monospace;font-size:.5rem;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-top:.2rem}
+.rates-wrap{overflow-x:auto}
+.rates-table{width:100%;border-collapse:collapse;font-family:'Space Mono',monospace;font-size:.7rem}
+.rates-table th{background:var(--navy);color:rgba(255,255,255,.7);padding:.5rem .75rem;text-align:left;font-weight:400;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em}
+.rates-table td{padding:.48rem .75rem;border-bottom:1px solid var(--border);vertical-align:middle}
+.rates-table tr:hover td{background:var(--s2)}
+.rtag{display:inline-block;padding:.1rem .38rem;border-radius:2px;font-size:.54rem;text-transform:uppercase;font-weight:700}
+.rt-hi{background:rgba(45,106,79,.12);color:#1a4a30}
+.rt-md{background:rgba(184,134,11,.12);color:#7a5800}
+.rt-lo{background:rgba(155,34,38,.12);color:#6b0f12}
+details{background:var(--s1);border:1px solid var(--border);border-radius:6px;padding:.85rem 1.1rem;margin-bottom:.5rem}
+details summary{font-size:.88rem;font-weight:500;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+details summary::after{content:'+';color:var(--text3);font-size:1.1rem}
+details[open] summary::after{content:'−'}
+details p,details ul{font-size:.82rem;color:var(--text2);line-height:1.75;margin-top:.65rem}
+details ul{padding-left:1.1rem}
+
+/* COMP BARS */
+.comp-bar-wrap{margin:.65rem 0}
+.comp-bar-label{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.6);margin-bottom:.28rem}
+.comp-bar-track{background:rgba(255,255,255,.08);border-radius:3px;height:9px;overflow:hidden}
+.comp-bar-fill{height:100%;border-radius:3px;transition:width 1s ease}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,.5);text-align:center;padding:2rem 1.5rem;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.08em}
+footer a{color:rgba(255,255,255,.4);text-decoration:none}
+.footer-links{display:flex;gap:1.25rem;justify-content:center;margin-bottom:.6rem;flex-wrap:wrap}
+.footer-disc{margin-top:.75rem;font-size:.55rem;color:rgba(255,255,255,.3);max-width:600px;margin-left:auto;margin-right:auto;line-height:1.7}
+
+@media(max-width:700px){
+  .nav{display:none}.nav-mob{display:block}
+  .hero-inner{grid-template-columns:1fr}.hero-badge{display:none}
+  .res-grid{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr}
+  .nav.open{display:flex;flex-direction:column;position:absolute;top:56px;left:0;right:0;background:var(--s1);border-bottom:1px solid var(--border);padding:.7rem;gap:.3rem;z-index:501}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display:flex;align-items:baseline;gap:.4rem">
+    <span class="logo">Wealth<em>Path</em></span>
+    <span class="logo-sub">Free Financial Calculators</span>
+  </div>
+  <nav class="nav" id="mainNav">
+    <a href="#compound">Compound Interest</a>
+    <a href="#goal">Savings Goal</a>
+    <a href="#retire">Retirement</a>
+    <a href="#inflation">Inflation</a>
+    <a href="#compare">Invest vs Cash</a>
+    <a href="#guides">Guides</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <button class="nav-mob" onclick="document.getElementById('mainNav').classList.toggle('open')">☰</button>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Make your money<br><em>work harder.</em></h1>
+      <p>Free interactive calculators for compound interest, savings goals, retirement planning, and more. No sign-up. No spreadsheets. Just clear answers.</p>
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-num" id="heroNum">$1,629</div>
+      <div class="hero-badge-sub">$1,000 at 5% for 10 years</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="ad-slot ad-leader">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="YOUR_PUB_ID" data-ad-slot="YOUR_SLOT_ID_1" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  Advertisement
+</div>
+</div>
+
+<!-- ══ 1. COMPOUND INTEREST ══ -->
+<div class="wrap"><section class="section" id="compound">
+  <div class="sec-label">Calculator 1 of 5</div>
+  <h2 class="sec-title">Compound Interest Calculator</h2>
+  <p class="sec-sub">See exactly how your investment grows over time — including the power of regular monthly contributions.</p>
+  <div class="two-col">
+    <div class="calc-layout">
+      <div class="calc-panel">
+        <h3>Your numbers</h3>
+        <div class="field"><label>Initial investment <span id="ci-pv-d">$10,000</span></label><input type="range" id="ci-pv" min="0" max="100000" step="500" value="10000" oninput="ciUpdate()"></div>
+        <div class="field"><label>Monthly contribution <span id="ci-pmt-d">$200</span></label><input type="range" id="ci-pmt" min="0" max="5000" step="50" value="200" oninput="ciUpdate()"></div>
+        <div class="field"><label>Annual interest rate <span id="ci-rate-d">7%</span></label><input type="range" id="ci-rate" min="0.5" max="20" step="0.5" value="7" oninput="ciUpdate()"></div>
+        <div class="field"><label>Time period <span id="ci-yrs-d">20 years</span></label><input type="range" id="ci-yrs" min="1" max="50" step="1" value="20" oninput="ciUpdate()"></div>
+        <div class="field">
+          <label style="margin-bottom:.4rem">Compounding frequency</label>
+          <div class="tog-row" id="ci-freq-row">
+            <button class="tog" data-v="12" onclick="setFreq(this)">Monthly</button>
+            <button class="tog on" data-v="4" onclick="setFreq(this)">Quarterly</button>
+            <button class="tog" data-v="2" onclick="setFreq(this)">Semi-annual</button>
+            <button class="tog" data-v="1" onclick="setFreq(this)">Annual</button>
+          </div>
+        </div>
+      </div>
+      <div class="results-panel">
+        <h3>Results</h3>
+        <div class="res-grid">
+          <div class="res-card hi"><div class="res-label">Final balance</div><div class="res-val gold" id="ci-final">—</div><div class="res-sub" id="ci-final-sub"></div></div>
+          <div class="res-card"><div class="res-label">Total contributed</div><div class="res-val" id="ci-contrib">—</div></div>
+          <div class="res-card"><div class="res-label">Interest earned</div><div class="res-val" id="ci-interest">—</div></div>
+          <div class="res-card"><div class="res-label">Total return</div><div class="res-val" id="ci-roi">—</div></div>
+        </div>
+        <div class="chart-wrap"><canvas id="ciChart"></canvas></div>
+        <span class="bd-toggle" onclick="this.nextElementSibling.classList.toggle('show')">Show year-by-year breakdown ▾</span>
+        <table class="bd-table"><thead><tr><th>Year</th><th>Contributed</th><th>Interest</th><th>Balance</th></tr></thead><tbody id="ci-tbody"></tbody></table>
+      </div>
+    </div>
+    <div class="sidebar-col">
+      <div class="ad-slot ad-rect">
+        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="YOUR_PUB_ID" data-ad-slot="YOUR_SLOT_ID_2"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        Advertisement · 300×250
+      </div>
+    </div>
+  </div>
+</section></div>
+
+<div class="wrap"><div class="ad-slot ad-banner">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="YOUR_PUB_ID" data-ad-slot="YOUR_SLOT_ID_3" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  Advertisement
+</div></div>
+
+<!-- ══ 2. SAVINGS GOAL ══ -->
+<div class="wrap"><section class="section" id="goal">
+  <div class="sec-label">Calculator 2 of 5</div>
+  <h2 class="sec-title">Savings Goal Planner</h2>
+  <p class="sec-sub">Know your target? Work backwards to find exactly how much you need to save each month.</p>
+  <div class="calc-layout">
+    <div class="calc-panel">
+      <h3>Your goal</h3>
+      <div class="field"><label>Target amount <span id="sg-goal-d">$50,000</span></label><input type="range" id="sg-goal" min="1000" max="500000" step="1000" value="50000" oninput="sgUpdate()"></div>
+      <div class="field"><label>Time to reach goal <span id="sg-yrs-d">5 years</span></label><input type="range" id="sg-yrs" min="1" max="30" step="1" value="5" oninput="sgUpdate()"></div>
+      <div class="field"><label>Expected annual return <span id="sg-rate-d">6%</span></label><input type="range" id="sg-rate" min="0" max="15" step="0.5" value="6" oninput="sgUpdate()"></div>
+      <div class="field"><label>Already saved <span id="sg-saved-d">$0</span></label><input type="range" id="sg-saved" min="0" max="100000" step="500" value="0" oninput="sgUpdate()"></div>
+    </div>
+    <div class="results-panel">
+      <h3>Monthly savings needed</h3>
+      <div class="res-grid">
+        <div class="res-card hi"><div class="res-label">Monthly savings needed</div><div class="res-val gold" id="sg-monthly">—</div></div>
+        <div class="res-card"><div class="res-label">Weekly equivalent</div><div class="res-val" id="sg-weekly">—</div></div>
+        <div class="res-card"><div class="res-label">Total you'll contribute</div><div class="res-val" id="sg-contrib">—</div></div>
+        <div class="res-card"><div class="res-label">Interest does the rest</div><div class="res-val" id="sg-interest">—</div></div>
+      </div>
+      <div class="chart-wrap"><canvas id="sgChart"></canvas></div>
+    </div>
+  </div>
+</section></div>
+
+<!-- ══ 3. RETIREMENT ══ -->
+<div class="wrap"><section class="section" id="retire" style="background:var(--s2);padding:2rem 0;margin:0 -1.5rem;padding-left:1.5rem;padding-right:1.5rem">
+  <div class="sec-label">Calculator 3 of 5</div>
+  <h2 class="sec-title">Retirement Planner</h2>
+  <p class="sec-sub">Project your nest egg and see if you're on track using the 4% safe withdrawal rule.</p>
+  <div class="calc-layout">
+    <div class="calc-panel">
+      <h3>Your situation</h3>
+      <div class="field-row">
+        <div class="field"><label>Current age <span id="ret-age-d">30</span></label><input type="range" id="ret-age" min="18" max="70" step="1" value="30" oninput="retUpdate()"></div>
+        <div class="field"><label>Retirement age <span id="ret-ret-d">65</span></label><input type="range" id="ret-ret" min="45" max="80" step="1" value="65" oninput="retUpdate()"></div>
+      </div>
+      <div class="field"><label>Current savings <span id="ret-saved-d">$25,000</span></label><input type="range" id="ret-saved" min="0" max="500000" step="5000" value="25000" oninput="retUpdate()"></div>
+      <div class="field"><label>Monthly contribution <span id="ret-pmt-d">$500</span></label><input type="range" id="ret-pmt" min="0" max="5000" step="50" value="500" oninput="retUpdate()"></div>
+      <div class="field"><label>Expected return <span id="ret-rate-d">7%</span></label><input type="range" id="ret-rate" min="1" max="15" step="0.5" value="7" oninput="retUpdate()"></div>
+      <div class="field"><label>Monthly expenses in retirement <span id="ret-spend-d">$4,000</span></label><input type="range" id="ret-spend" min="500" max="20000" step="250" value="4000" oninput="retUpdate()"></div>
+    </div>
+    <div class="results-panel">
+      <h3>Retirement projection</h3>
+      <div class="res-grid">
+        <div class="res-card hi"><div class="res-label">Nest egg at retirement</div><div class="res-val gold" id="ret-nest">—</div></div>
+        <div class="res-card"><div class="res-label">Years to save</div><div class="res-val" id="ret-years">—</div></div>
+        <div class="res-card"><div class="res-label">Safe monthly income (4%)</div><div class="res-val" id="ret-income">—</div></div>
+        <div class="res-card"><div class="res-label">Surplus / shortfall</div><div class="res-val" id="ret-surplus">—</div></div>
+      </div>
+      <div class="verdict" id="ret-verdict"></div>
+      <div class="chart-wrap"><canvas id="retChart"></canvas></div>
+    </div>
+  </div>
+</section></div>
+
+<div class="wrap"><div class="ad-slot ad-banner">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="YOUR_PUB_ID" data-ad-slot="YOUR_SLOT_ID_4" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  Advertisement
+</div></div>
+
+<!-- ══ 4. INFLATION ══ -->
+<div class="wrap"><section class="section" id="inflation">
+  <div class="sec-label">Calculator 4 of 5</div>
+  <h2 class="sec-title">Inflation & Purchasing Power</h2>
+  <p class="sec-sub">See what your money will really be worth in the future — and how much you need to beat inflation.</p>
+  <div class="calc-layout">
+    <div class="calc-panel">
+      <h3>Your numbers</h3>
+      <div class="field"><label>Current amount <span id="inf-amt-d">$10,000</span></label><input type="range" id="inf-amt" min="1000" max="1000000" step="1000" value="10000" oninput="infUpdate()"></div>
+      <div class="field"><label>Years ahead <span id="inf-yrs-d">20 years</span></label><input type="range" id="inf-yrs" min="1" max="50" step="1" value="20" oninput="infUpdate()"></div>
+      <div class="field"><label>Inflation rate <span id="inf-rate-d">3%</span></label><input type="range" id="inf-rate" min="0.5" max="15" step="0.5" value="3" oninput="infUpdate()"></div>
+      <div class="field"><label>Your investment return <span id="inf-inv-d">7%</span></label><input type="range" id="inf-inv" min="0" max="20" step="0.5" value="7" oninput="infUpdate()"></div>
+    </div>
+    <div class="results-panel">
+      <h3>Purchasing power</h3>
+      <div class="res-grid">
+        <div class="res-card"><div class="res-label">Today's value</div><div class="res-val" id="inf-today">—</div></div>
+        <div class="res-card"><div class="res-label">Future purchasing power</div><div class="res-val" id="inf-future">—</div><div class="res-sub">in today's dollars</div></div>
+        <div class="res-card"><div class="res-label">Real return (after inflation)</div><div class="res-val" id="inf-real">—</div></div>
+        <div class="res-card hi"><div class="res-label">Nominal value if invested</div><div class="res-val gold" id="inf-nominal">—</div></div>
+      </div>
+      <div class="chart-wrap"><canvas id="infChart"></canvas></div>
+      <div style="margin-top:.5rem;padding:.65rem;background:rgba(255,255,255,.05);border-radius:4px;font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.55);line-height:1.7" id="inf-insight"></div>
+    </div>
+  </div>
+</section></div>
+
+<!-- ══ 5. INVEST VS CASH ══ -->
+<div class="wrap"><section class="section" id="compare">
+  <div class="sec-label">Calculator 5 of 5</div>
+  <h2 class="sec-title">Invest vs. Keep as Cash</h2>
+  <p class="sec-sub">Side-by-side: what happens if you invest versus leaving money in savings or under a mattress.</p>
+  <div class="calc-layout">
+    <div class="calc-panel">
+      <h3>Comparison settings</h3>
+      <div class="field"><label>Lump sum amount <span id="cmp-amt-d">$20,000</span></label><input type="range" id="cmp-amt" min="1000" max="500000" step="1000" value="20000" oninput="cmpUpdate()"></div>
+      <div class="field"><label>Time horizon <span id="cmp-yrs-d">25 years</span></label><input type="range" id="cmp-yrs" min="1" max="50" step="1" value="25" oninput="cmpUpdate()"></div>
+      <div class="field"><label>Investment return <span id="cmp-inv-d">7%</span></label><input type="range" id="cmp-inv" min="1" max="20" step="0.5" value="7" oninput="cmpUpdate()"></div>
+      <div class="field"><label>Savings account rate <span id="cmp-sav-d">4.5%</span></label><input type="range" id="cmp-sav" min="0" max="10" step="0.25" value="4.5" oninput="cmpUpdate()"></div>
+      <div class="field"><label>Inflation rate <span id="cmp-inf-d">3%</span></label><input type="range" id="cmp-inf" min="0.5" max="10" step="0.5" value="3" oninput="cmpUpdate()"></div>
+    </div>
+    <div class="results-panel">
+      <h3>After <span id="cmp-yrs-lbl">25</span> years</h3>
+      <div id="cmp-bars"></div>
+      <div class="chart-wrap"><canvas id="cmpChart"></canvas></div>
+      <div style="margin-top:.4rem;font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.5);line-height:1.7" id="cmp-verdict"></div>
+    </div>
+  </div>
+</section></div>
+
+<!-- ══ GUIDES ══ -->
+<div class="wrap">
+<section class="content-section" id="guides">
+  <div class="sec-label">Learning center</div>
+  <h2 style="font-size:1.45rem;color:var(--navy);margin-bottom:.4rem">Personal Finance Guides</h2>
+  <p class="lead">Plain-language explanations of the concepts behind every calculator on this page.</p>
+
+  <div class="articles-grid">
+    <article class="article-card">
+      <h3>How compound interest actually works — and why it changes everything</h3>
+      <p>Compound interest means you earn interest on your interest — not just on your original deposit. This creates exponential growth rather than linear growth, and it is the single most powerful force available to individual investors.</p>
+      <p>Consider a straightforward example. You deposit $10,000 at 7% annual interest. After year one you have $10,700. In year two, you earn 7% on $10,700 — not just on the original $10,000 — giving you $11,449. That extra $49 is the compound effect. It sounds small, but it doubles every decade at this rate.</p>
+      <p>After 30 years at 7%, that initial $10,000 becomes $76,123. Without compounding — simple interest only — it would reach just $31,000. The $45,000 difference was created purely by interest earning interest. This is why Albert Einstein allegedly called compound interest the eighth wonder of the world.</p>
+      <p><strong>The key insight:</strong> Time is the most important variable, more important than the interest rate itself. Starting ten years earlier can more than double your final balance even if you invest less total money. This is why financial advisors consistently say: start now, even with a small amount.</p>
+    </article>
+
+    <article class="article-card">
+      <h3>The 4% rule: how to calculate exactly how much you need to retire</h3>
+      <p>The 4% rule is the most widely cited guideline in retirement planning. It states that you can safely withdraw 4% of your investment portfolio each year in retirement and have a very high probability — historically above 95% — of your money lasting 30 years or more.</p>
+      <p>To calculate your FIRE number (the portfolio size needed for financial independence), multiply your expected annual expenses by 25. This is simply the inverse of 4%: 1 ÷ 0.04 = 25. If you plan to spend $48,000 per year in retirement, you need $1,200,000. If you plan to spend $60,000, you need $1,500,000.</p>
+      <p>The rule was derived from the 1994 Trinity Study, which analyzed historical US stock and bond returns from 1925 through the early 1990s. Across nearly every 30-year rolling period, a portfolio of 50–75% stocks survived the 4% annual withdrawal rate even through the Great Depression and stagflation of the 1970s.</p>
+      <p><strong>Important caveat:</strong> The 4% rule was designed for a 30-year retirement starting at age 65. If you retire at 45 or 50, consider using 3–3.5% to provide a larger safety margin for a 40–50 year retirement horizon.</p>
+    </article>
+
+    <article class="article-card">
+      <h3>Inflation: the silent force eroding your savings every single year</h3>
+      <p>Inflation is the gradual increase in prices over time. At the US long-term average of approximately 3% annually, the purchasing power of cash halves roughly every 24 years. One hundred thousand dollars sitting in a checking account today will only buy what $50,000 buys today, 24 years from now — even though the account still shows $100,000.</p>
+      <p>This is why keeping long-term savings in a standard bank account is a losing strategy. Most traditional savings accounts pay 0.5% or less in annual interest — far below the inflation rate. The nominal dollar balance grows slowly, but the real purchasing power actually shrinks every year.</p>
+      <p>To calculate your real return — what your investment actually earns after inflation is stripped out — use the formula: real return ≈ nominal return minus inflation rate. If stocks return 9% and inflation is 3%, your real return is approximately 6%. That 6% represents genuine growth in what your money can buy.</p>
+      <p><strong>The practical lesson:</strong> Any money you won't need for more than three years should be working against inflation, not sitting idle. Historically, diversified stock index funds have been the most accessible tool for individual investors to consistently beat inflation over long time periods.</p>
+    </article>
+
+    <article class="article-card">
+      <h3>Setting a savings goal: why specific numbers work and vague intentions don't</h3>
+      <p>Most people approach saving with good intentions and vague plans: "I should save more," or "I'll put aside whatever's left at the end of the month." Decades of behavioral finance research consistently show that this approach fails for the vast majority of people. Goals without specific numbers, timelines, and automatic systems almost never succeed.</p>
+      <p>The most effective approach is reverse-engineering: decide the exact target amount, set a firm deadline, factor in a reasonable expected return, and calculate the precise monthly contribution required. Use the Savings Goal calculator above to do this in seconds. The result is an actionable number you can set as an automatic monthly transfer — removing willpower from the equation entirely.</p>
+      <p>Automation is the most important implementation detail. Set up an automatic transfer on the same day as your paycheck, before you have a chance to spend the money. Behavioral economists call this "paying yourself first." Studies consistently show that automating savings is roughly three times more effective than relying on manual transfers.</p>
+      <p><strong>Common savings goal timelines:</strong> Emergency fund (3–6 months of expenses) — 1 to 3 years. Home down payment — 3 to 7 years. Car purchase — 1 to 3 years. College fund — 10 to 18 years. Early retirement — 10 to 25 years depending on savings rate.</p>
+    </article>
+
+    <article class="article-card">
+      <h3>Index funds vs. savings accounts: a 30-year comparison with real numbers</h3>
+      <p>One of the most consequential financial decisions you will ever make is where to keep money you won't need for 5 or more years. The difference in outcomes between a high-yield savings account and a diversified stock index fund, compounded over long time periods, is genuinely staggering.</p>
+      <p>Consider $50,000 held for 30 years. In a high-yield savings account earning 4.5% annually, it grows to approximately $180,000 — a solid result. In an S&P 500 index fund earning the historical average of approximately 10%, it grows to approximately $872,000. That is nearly five times more wealth from the same starting amount.</p>
+      <p>After adjusting for 3% annual inflation, the real purchasing power of the invested portfolio is roughly $360,000 in today's dollars, versus $74,000 for the savings account. The difference is not a rounding error — it is the difference between a comfortable retirement and a strained one.</p>
+      <p><strong>The simple allocation rule:</strong> Emergency fund and money needed within 2–3 years belongs in a high-yield savings account. Money with a 7-or-more-year horizon generally belongs in low-cost, diversified index funds. Never keep long-term wealth in a regular checking or savings account earning near zero percent.</p>
+    </article>
+
+    <article class="article-card">
+      <h3>Dollar-cost averaging: how to invest without ever trying to time the market</h3>
+      <p>Dollar-cost averaging (DCA) is the practice of investing a fixed dollar amount at regular intervals — for example, $400 on the first of every month — regardless of whether the stock market is up or down. It is the systematic opposite of trying to "time the market" by waiting for the perfect moment to buy.</p>
+      <p>The mechanical advantage of DCA is that you automatically purchase more shares when prices are low and fewer shares when prices are high. Over time, this tends to produce a lower average cost per share than investing a lump sum at a random single point in time. During market downturns — which inevitably occur — DCA investors are quietly accumulating more shares at discounted prices.</p>
+      <p>More importantly, DCA removes the psychological burden of market timing. Investors who wait for the "right moment" almost always wait too long, miss significant gains, and eventually buy at a peak driven by FOMO (fear of missing out). A consistent automatic investment plan eliminates this destructive behavioral cycle entirely.</p>
+      <p><strong>How to implement DCA:</strong> Open a brokerage account at Fidelity, Vanguard, or Schwab. Select a broad market index fund (VTI, FSKAX, or SWTSX are popular low-cost options). Set up automatic monthly investments. Then — and this is the hardest part — do not look at your balance during market downturns.</p>
+    </article>
+  </div>
+
+  <!-- REFERENCE TABS -->
+  <div style="margin-top:2rem">
+    <h3 style="font-size:1.2rem;color:var(--navy);margin-bottom:1rem">Financial Reference Charts</h3>
+    <div class="tabs" id="refTabs">
+      <button class="tab active" onclick="switchTab('refTabs','ref-r72',this)">Rule of 72</button>
+      <button class="tab" onclick="switchTab('refTabs','ref-rates',this)">Historical rates</button>
+      <button class="tab" onclick="switchTab('refTabs','ref-formulas',this)">Key formulas</button>
+      <button class="tab" onclick="switchTab('refTabs','ref-concepts',this)">Concepts</button>
+    </div>
+
+    <div class="tab-pane active" id="ref-r72">
+      <p style="font-size:.85rem;color:var(--text2);margin-bottom:1rem;line-height:1.7">The <strong>Rule of 72</strong>: divide 72 by your annual return rate to find how many years it takes to double your money. It is one of the most useful mental shortcuts in personal finance.</p>
+      <div class="r72-grid">
+        ${[1,2,3,4,5,6,7,8,9,10,12,15].map(r=>`<div class="r72-card"><div class="r72-rate">${r}%</div><div class="r72-years">${(72/r).toFixed(1)} yrs</div><div class="r72-lbl">to double</div></div>`).join('')}
+      </div>
+      <div class="info-box">At the S&P 500 historical average of ~7% real returns, your money doubles roughly every <strong>10.3 years</strong>. Start with $10,000 at age 25: you'd have approximately $80,000 by age 65 without adding another penny — purely from compounding.</div>
+    </div>
+
+    <div class="tab-pane" id="ref-rates">
+      <div class="rates-wrap">
+      <table class="rates-table">
+        <thead><tr><th>Asset / Account</th><th>Typical Annual Return</th><th>Risk level</th><th>Liquidity</th></tr></thead>
+        <tbody>
+          <tr><td>S&P 500 index fund (historical avg)</td><td>~10% nominal / ~7% real</td><td><span class="rtag rt-md">Medium</span></td><td>High (trading days)</td></tr>
+          <tr><td>US Total Stock Market fund</td><td>~9.5% nominal</td><td><span class="rtag rt-md">Medium</span></td><td>High</td></tr>
+          <tr><td>10-Year US Treasury Bond (current)</td><td>4–5%</td><td><span class="rtag rt-lo">Low</span></td><td>High</td></tr>
+          <tr><td>High-yield savings account (current)</td><td>4–5%</td><td><span class="rtag rt-lo">Very low</span></td><td>Very high</td></tr>
+          <tr><td>Real estate (US, long-term avg)</td><td>~4–6% appreciation + rental</td><td><span class="rtag rt-md">Medium</span></td><td>Low</td></tr>
+          <tr><td>Corporate bonds (investment grade)</td><td>5–7%</td><td><span class="rtag rt-lo">Low–Med</span></td><td>Medium</td></tr>
+          <tr><td>Gold (historical avg)</td><td>~1–3% real</td><td><span class="rtag rt-md">Medium</span></td><td>Medium</td></tr>
+          <tr><td>Regular savings account</td><td>0.5–1%</td><td><span class="rtag rt-lo">None</span></td><td>Very high</td></tr>
+          <tr><td>Cash / checking account</td><td>0–0.1%</td><td><span class="rtag rt-lo">None</span></td><td>Instant</td></tr>
+          <tr><td>Inflation (US long-term avg)</td><td style="color:var(--red)">~3% erosion/year</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="font-size:.72rem;color:var(--text3);margin-top:.65rem;font-family:'Space Mono',monospace">Past performance does not guarantee future results. Returns shown are approximate long-term historical averages.</p>
+    </div>
+
+    <div class="tab-pane" id="ref-formulas">
+      <div class="concept-grid">
+        <div class="concept-card"><h4>Compound Interest</h4><div class="formula-box">A = P(1 + r/n)^(nt)</div><p>A = final amount, P = principal, r = annual rate, n = compounding periods/year, t = years.</p></div>
+        <div class="concept-card"><h4>Future Value of Annuity</h4><div class="formula-box">FV = PMT × [(1+r)^n − 1] / r</div><p>Total value of regular equal payments (PMT) at interest rate r over n periods.</p></div>
+        <div class="concept-card"><h4>Present Value</h4><div class="formula-box">PV = FV / (1 + r)^n</div><p>What a future sum is worth today, accounting for the time value of money.</p></div>
+        <div class="concept-card"><h4>Real Return</h4><div class="formula-box">r_real ≈ r_nominal − inflation</div><p>Precise: (1 + r_nom) / (1 + r_inf) − 1. Stocks at 10%, inflation 3% → real return ≈ 7%.</p></div>
+        <div class="concept-card"><h4>Rule of 72</h4><div class="formula-box">Years to double = 72 / r%</div><p>At 6% annual return: 72 ÷ 6 = 12 years to double. A remarkably accurate approximation.</p></div>
+        <div class="concept-card"><h4>4% Withdrawal Rule</h4><div class="formula-box">Annual income = Portfolio × 0.04</div><p>The Trinity Study-derived rule: 4% annual withdrawal historically sustains a portfolio 30+ years.</p></div>
+        <div class="concept-card"><h4>FIRE Number</h4><div class="formula-box">FIRE = Annual expenses × 25</div><p>Portfolio needed to retire via 4% rule. $48K/year expenses = $1.2M needed. (1 ÷ 0.04 = 25)</p></div>
+        <div class="concept-card"><h4>Savings Rate Impact</h4><div class="formula-box">Higher rate = dramatically fewer years</div><p>Saving 10% → ~43 yrs. 25% → ~32 yrs. 50% → ~17 yrs. 75% → ~7 yrs to financial independence.</p></div>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="ref-concepts">
+      <div class="concept-grid">
+        <div class="concept-card"><h4>Time value of money</h4><p>A dollar today is worth more than a dollar tomorrow because today's dollar can be invested. This is the foundation of all financial mathematics. $1,000 today at 7% = $1,967 in 10 years. Waiting costs real money.</p></div>
+        <div class="concept-card"><h4>Opportunity cost</h4><p>Every dollar spent is a dollar that cannot compound. A $5 daily coffee = $1,825 per year. Invested at 7% for 30 years = $185,000 in foregone wealth. Awareness of opportunity cost changes spending decisions.</p></div>
+        <div class="concept-card"><h4>Asset allocation</h4><p>Dividing investments across stocks, bonds, cash, and alternatives based on time horizon and risk tolerance. A common starting rule: hold (110 minus your age) percent in stocks. Rebalance annually.</p></div>
+        <div class="concept-card"><h4>Sequence of returns risk</h4><p>The order in which investment returns occur matters enormously in retirement. A major market crash in the first years of retirement is far more damaging than the same crash mid-career because you're withdrawing while values are depressed.</p></div>
+        <div class="concept-card"><h4>Tax-advantaged accounts</h4><p>401(k), IRA, and Roth IRA accounts let investments grow either tax-deferred or tax-free. Maxing these accounts before investing in taxable accounts is nearly always the right order of operations for most investors.</p></div>
+        <div class="concept-card"><h4>Diversification</h4><p>Spreading investments across many assets reduces risk without proportionally reducing return. A single stock can go to zero. A broad index fund of 500 companies has never permanently gone to zero in US history.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ══ FAQ ══ -->
+<div class="wrap">
+<section class="content-section" id="faq">
+  <div class="sec-label">FAQ</div>
+  <h2 style="font-size:1.45rem;color:var(--navy);margin-bottom:1rem">Frequently asked questions</h2>
+
+  <details><summary>What interest rate should I use in the compound interest calculator?</summary><p>It depends entirely on where your money is invested. For a high-yield savings account, use the current rate (typically 4–5% in 2025). For a US total stock market or S&P 500 index fund, the historical average is approximately 10% nominal or 7% real (after inflation). For conservative long-term planning, most financial planners recommend using 5–7% to account for inflation and the possibility of below-average returns. Never use the rate your regular checking account pays (typically 0–0.1%).</p></details>
+
+  <details><summary>What is the difference between compound and simple interest?</summary><p>Simple interest is calculated only on the original principal. If you invest $1,000 at 5% simple interest for 10 years, you earn exactly $50 per year — $500 total — ending with $1,500. Compound interest is calculated on the principal plus all previously accumulated interest. The same $1,000 at 5% compound interest for 10 years grows to $1,629 — an extra $129 purely from compounding. At 30 years, the difference becomes dramatic: simple interest gives $2,500 while compound interest gives $4,322.</p></details>
+
+  <details><summary>How much should I have saved for retirement by age?</summary><p>Fidelity's widely used benchmarks: 1× your annual salary saved by age 30, 3× by 40, 6× by 50, 8× by 60, and 10× by age 67. These are designed for someone who retires at 67 and wants to replace approximately 45% of pre-retirement income. Your personal number depends on your expected lifestyle, planned retirement age, Social Security benefits, any pension income, and whether you have a partner. Use the Retirement Planner above with your own specific numbers for a personalized estimate.</p></details>
+
+  <details><summary>How does inflation affect my savings goal calculations?</summary><p>Inflation means your target amount in future dollars needs to be larger than it appears in today's dollars. If you want $500,000 in purchasing power 20 years from now, you actually need to accumulate approximately $903,000 in nominal terms assuming 3% annual inflation. When setting long-term savings goals, always clarify whether your target is expressed in today's dollars or future dollars. For goals denominated in today's dollars, use a real (inflation-adjusted) return rate in your calculation rather than a nominal rate.</p></details>
+
+  <details><summary>Is this calculator accurate for 401(k) and Roth IRA accounts?</summary><p>Yes. The compound interest calculator shows gross pre-tax growth, which accurately reflects how tax-advantaged accounts grow. In a traditional 401(k) or IRA, taxes are deferred until withdrawal. In a Roth IRA, contributions are made with after-tax money and growth is tax-free. For taxable brokerage accounts, the actual after-tax result will be somewhat lower since capital gains taxes and dividend taxes apply each year. For a rough taxable account estimate, reduce your expected return by 0.5–1.5% depending on your tax bracket and investment style.</p></details>
+
+  <details><summary>What is the best compounding frequency?</summary><p>More frequent compounding produces slightly higher returns. Daily compounding generates marginally more than monthly, which generates more than quarterly, which generates more than annual. However, the difference is smaller than most people expect. On $10,000 at 5% for 10 years: annual compounding gives $16,289; monthly gives $16,470; daily gives $16,487. The difference between annual and daily is only $198, or about 1.2%. The compounding frequency matters far less than the interest rate, the time period, and whether you make regular contributions.</p></details>
+
+  <details><summary>What is the safe withdrawal rate and how long will my retirement savings last?</summary><p>The 4% safe withdrawal rate, from the Trinity Study, means withdrawing 4% of your starting portfolio value each year (adjusted for inflation) has historically allowed retirement savings to last 30 years or more in nearly all historical scenarios including the Great Depression and the 1970s stagflation period. More recent research suggests 3.3–3.5% may be more appropriate for today's lower bond yields and higher valuations. The exact rate that works depends on your asset allocation, flexibility to reduce spending in downturns, and how long your retirement will last. A 45-year-old planning a 50-year retirement should consider 3–3.5%.</p></details>
+
+  <details><summary>How does dollar-cost averaging compare to lump-sum investing?</summary><p>Research consistently shows that lump-sum investing outperforms dollar-cost averaging approximately two-thirds of the time, because markets tend to go up over time and lump-sum gets more money invested sooner. However, DCA outperforms when markets decline after the investment date — which is impossible to predict. More importantly, most people do not have a large lump sum to invest all at once. For someone investing from regular income, dollar-cost averaging through automatic monthly contributions is not a compromise — it is simply the appropriate strategy given their cash flow. The behavioral benefit of DCA (removing emotion and timing from the decision) is also genuinely valuable.</p></details>
+
+  <details><summary>What is a realistic savings rate for financial independence?</summary><p>The savings rate (the percentage of take-home pay you invest) is the single most powerful lever in determining when you can achieve financial independence. A 10% savings rate typically leads to financial independence in approximately 40–45 years. A 25% rate compresses this to about 30–32 years. A 50% rate — possible for high earners with controlled lifestyles — can achieve financial independence in 15–17 years. A 70–75% savings rate, which some practitioners of the FIRE movement achieve, can lead to financial independence in as few as 7–10 years. These estimates assume a 7% real return on investments and the 4% withdrawal rule at retirement.</p></details>
+
+  <details><summary>Does WealthPath store any of my financial data?</summary><p>No. All calculations on WealthPath run entirely in your browser using JavaScript. No numbers you enter are transmitted to any server, stored in any database, or accessible to anyone other than you. There are no accounts, no logins, and no cookies that store your financial data. The page is a static HTML file with JavaScript calculators — it has no backend database. Your inputs exist only in your browser's memory while the page is open and disappear when you close or refresh it.</p></details>
+</section>
+</div>
+
+<!-- BOTTOM AD -->
+<div class="wrap"><div class="ad-slot ad-banner">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="YOUR_PUB_ID" data-ad-slot="YOUR_SLOT_ID_5" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  Advertisement
+</div></div>
+
+<footer>
+  <div class="footer-links">
+    <a href="#compound">Compound Interest</a><a href="#goal">Savings Goal</a>
+    <a href="#retire">Retirement</a><a href="#inflation">Inflation</a>
+    <a href="#compare">Invest vs Cash</a><a href="#guides">Guides</a><a href="#faq">FAQ</a>
+  </div>
+  <div>WealthPath · Free Financial Calculators · No sign-up required</div>
+  <p class="footer-disc">All calculators are for educational and informational purposes only. Results are hypothetical projections based on the assumptions you enter. Past investment performance does not guarantee future results. WealthPath does not provide financial, tax, or investment advice. Consult a qualified financial advisor before making investment decisions.</p>
+</footer>
+
+<script>
+// ═══════════ UTILS ═══════════
+const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+const fmtP = n => (Math.round(n*10)/10) + '%';
+let ciChartI, sgChartI, retChartI, infChartI, cmpChartI;
+
+const CDEFS = {
+  responsive:true, maintainAspectRatio:false,
+  plugins:{ legend:{display:true,labels:{font:{family:"'Space Mono'",size:9},color:'rgba(255,255,255,.5)',boxWidth:8,padding:10,usePointStyle:true}}, tooltip:{bodyFont:{family:"'Space Mono'",size:10},titleFont:{family:"'Space Mono'",size:10},backgroundColor:'rgba(20,25,45,.95)',borderColor:'rgba(255,255,255,.1)',borderWidth:1,callbacks:{label:c=>' '+fmt(c.parsed.y)}} },
+  scales:{x:{grid:{color:'rgba(255,255,255,.06)'},ticks:{font:{family:"'Space Mono'",size:8},color:'rgba(255,255,255,.3)',maxTicksLimit:8}},y:{grid:{color:'rgba(255,255,255,.06)'},ticks:{font:{family:"'Space Mono'",size:8},color:'rgba(255,255,255,.3)',callback:v=>'$'+Intl.NumberFormat('en',{notation:'compact'}).format(v)}}}
+};
+
+function mkChart(id,data){const c=document.getElementById(id);if(!c)return null;return new Chart(c,{type:'line',data,options:{...CDEFS,animation:{duration:350}}});}
+function upChart(inst,data){if(!inst)return;inst.data=data;inst.update('none');}
+function switchTab(gid,tid,btn){
+  const g=document.getElementById(gid);g.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');
+  const par=btn.closest('section')||btn.parentElement.parentElement;par.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));document.getElementById(tid).classList.add('active');
+}
+
+// ═══════════ 1. COMPOUND INTEREST ═══════════
+let ciFreq=4;
+function setFreq(btn){ciFreq=+btn.dataset.v;document.querySelectorAll('#ci-freq-row .tog').forEach(b=>b.classList.toggle('on',b===btn));ciUpdate();}
+function ciUpdate(){
+  const pv=+document.getElementById('ci-pv').value,pmt=+document.getElementById('ci-pmt').value;
+  const rate=+document.getElementById('ci-rate').value/100,yrs=+document.getElementById('ci-yrs').value,n=ciFreq;
+  document.getElementById('ci-pv-d').textContent=fmt(pv);
+  document.getElementById('ci-pmt-d').textContent=fmt(pmt);
+  document.getElementById('ci-rate-d').textContent=fmtP(rate*100);
+  document.getElementById('ci-yrs-d').textContent=yrs+' year'+(yrs!==1?'s':'');
+  const rp=rate/n;const labels=[],bals=[],prins=[];let bal=pv;const tbody=document.getElementById('ci-tbody');tbody.innerHTML='';
+  for(let y=0;y<=yrs;y++){
+    labels.push('Yr '+y);
+    if(y===0){bals.push(pv);prins.push(pv);continue;}
+    bal=bal*Math.pow(1+rp,n)+pmt*((Math.pow(1+rp,n)-1)/rp);
+    const prin=pv+pmt*12*y;prins.push(prin);bals.push(bal);
+    tbody.innerHTML+=`<tr><td>${y}</td><td>${fmt(prin)}</td><td>${fmt(bal-prin)}</td><td>${fmt(bal)}</td></tr>`;
+  }
+  const totC=pv+pmt*12*yrs,finalB=bals[bals.length-1],interest=finalB-totC,roi=(finalB/Math.max(totC,1)-1)*100;
+  document.getElementById('ci-final').textContent=fmt(finalB);
+  document.getElementById('ci-final-sub').textContent='in '+yrs+' year'+(yrs!==1?'s':'');
+  document.getElementById('ci-contrib').textContent=fmt(totC);
+  document.getElementById('ci-interest').textContent=fmt(interest);
+  document.getElementById('ci-roi').textContent='+'+fmtP(roi);
+  document.getElementById('heroNum').textContent=fmt(1000*Math.pow(1+0.05/12,12*10));
+  const d={labels,datasets:[{label:'Total balance',data:bals,borderColor:'#daa520',backgroundColor:'rgba(218,165,32,.12)',fill:true,tension:.35,borderWidth:2,pointRadius:0,pointHoverRadius:4},{label:'Amount contributed',data:prins,borderColor:'rgba(255,255,255,.3)',backgroundColor:'rgba(255,255,255,.04)',fill:true,tension:.35,borderWidth:1.5,pointRadius:0,borderDash:[4,3]}]};
+  if(!ciChartI)ciChartI=mkChart('ciChart',d);else upChart(ciChartI,d);
+}
+
+// ═══════════ 2. SAVINGS GOAL ═══════════
+function sgUpdate(){
+  const goal=+document.getElementById('sg-goal').value,yrs=+document.getElementById('sg-yrs').value;
+  const rate=+document.getElementById('sg-rate').value/100,saved=+document.getElementById('sg-saved').value;
+  document.getElementById('sg-goal-d').textContent=fmt(goal);
+  document.getElementById('sg-yrs-d').textContent=yrs+' year'+(yrs!==1?'s':'');
+  document.getElementById('sg-rate-d').textContent=fmtP(rate*100);
+  document.getElementById('sg-saved-d').textContent=fmt(saved);
+  const months=yrs*12,rM=rate/12;
+  const fvSaved=saved*Math.pow(1+rM,months);const rem=goal-fvSaved;
+  const monthly=rM===0?Math.max(0,rem/months):Math.max(0,rem*rM/(Math.pow(1+rM,months)-1));
+  const totC=saved+monthly*months,intShare=goal-totC;
+  document.getElementById('sg-monthly').textContent=fmt(monthly);
+  document.getElementById('sg-weekly').textContent=fmt(monthly/4.33);
+  document.getElementById('sg-contrib').textContent=fmt(totC);
+  document.getElementById('sg-interest').textContent=fmt(Math.max(0,intShare));
+  const lbls=[],bals=[];let b=saved;
+  for(let m=0;m<=months;m++){if(m>0)b=b*(1+rM)+monthly;if(m%Math.max(1,Math.floor(months/24))===0){lbls.push('Yr '+(m/12).toFixed(1));bals.push(b);}}
+  const d={labels:lbls,datasets:[{label:'Balance',data:bals,borderColor:'#daa520',backgroundColor:'rgba(218,165,32,.12)',fill:true,tension:.4,borderWidth:2,pointRadius:0},{label:'Goal',data:Array(lbls.length).fill(goal),borderColor:'rgba(255,255,255,.25)',borderWidth:1,borderDash:[5,4],pointRadius:0,fill:false}]};
+  if(!sgChartI)sgChartI=mkChart('sgChart',d);else upChart(sgChartI,d);
+}
+
+// ═══════════ 3. RETIREMENT ═══════════
+function retUpdate(){
+  const age=+document.getElementById('ret-age').value,retAge=+document.getElementById('ret-ret').value;
+  const saved=+document.getElementById('ret-saved').value,pmt=+document.getElementById('ret-pmt').value;
+  const rate=+document.getElementById('ret-rate').value/100,spend=+document.getElementById('ret-spend').value;
+  document.getElementById('ret-age-d').textContent=age;document.getElementById('ret-ret-d').textContent=retAge;
+  document.getElementById('ret-saved-d').textContent=fmt(saved);document.getElementById('ret-pmt-d').textContent=fmt(pmt);
+  document.getElementById('ret-rate-d').textContent=fmtP(rate*100);document.getElementById('ret-spend-d').textContent=fmt(spend);
+  const yrs=Math.max(1,retAge-age),rM=rate/12,months=yrs*12;
+  let nest=saved*Math.pow(1+rM,months)+pmt*((Math.pow(1+rM,months)-1)/rM);
+  const safeM=nest*0.04/12,surplus=safeM-spend;
+  document.getElementById('ret-nest').textContent=fmt(nest);
+  document.getElementById('ret-years').textContent=yrs;
+  document.getElementById('ret-income').textContent=fmt(safeM)+'/mo';
+  document.getElementById('ret-surplus').textContent=(surplus>=0?'+':'')+fmt(surplus)+'/mo';
+  document.getElementById('ret-surplus').style.color=surplus>=0?'#daa520':'#f09595';
+  const v=document.getElementById('ret-verdict');
+  if(surplus>=0){v.style.background='rgba(45,106,79,.2)';v.style.borderLeft='3px solid #40916c';v.style.color='#9fe1cb';v.textContent=`On track. Your portfolio generates ${fmt(safeM)}/month via the 4% rule — covering your ${fmt(spend)}/month expenses with ${fmt(surplus)}/month to spare.`;}
+  else{v.style.background='rgba(155,34,38,.15)';v.style.borderLeft='3px solid #ae2012';v.style.color='#f09595';v.textContent=`Shortfall of ${fmt(Math.abs(surplus))}/month. Increase monthly contributions, delay retirement, or plan for lower expenses.`;}
+  const lbls=[],vals=[];for(let yr=0;yr<=yrs;yr+=Math.max(1,Math.floor(yrs/20))){const m=yr*12;lbls.push('Age '+(age+yr));vals.push(saved*Math.pow(1+rM,m)+pmt*((Math.pow(1+rM,m)-1)/rM));}
+  const d={labels:lbls,datasets:[{label:'Projected portfolio',data:vals,borderColor:'#daa520',backgroundColor:'rgba(218,165,32,.1)',fill:true,tension:.4,borderWidth:2,pointRadius:0}]};
+  if(!retChartI)retChartI=mkChart('retChart',d);else upChart(retChartI,d);
+}
+
+// ═══════════ 4. INFLATION ═══════════
+function infUpdate(){
+  const amt=+document.getElementById('inf-amt').value,yrs=+document.getElementById('inf-yrs').value;
+  const infR=+document.getElementById('inf-rate').value/100,invR=+document.getElementById('inf-inv').value/100;
+  document.getElementById('inf-amt-d').textContent=fmt(amt);document.getElementById('inf-yrs-d').textContent=yrs+' years';
+  document.getElementById('inf-rate-d').textContent=fmtP(infR*100);document.getElementById('inf-inv-d').textContent=fmtP(invR*100);
+  const pp=amt/Math.pow(1+infR,yrs),nominal=amt*Math.pow(1+invR,yrs),realR=((1+invR)/(1+infR)-1)*100;
+  document.getElementById('inf-today').textContent=fmt(amt);document.getElementById('inf-future').textContent=fmt(pp);
+  document.getElementById('inf-real').textContent=fmtP(realR);document.getElementById('inf-nominal').textContent=fmt(nominal);
+  const lostPct=Math.round((1-pp/amt)*100),gainPct=Math.round((nominal/amt-1)*100);
+  document.getElementById('inf-insight').textContent=`Inflation alone erodes ${lostPct}% of your purchasing power over ${yrs} years. Invested at ${fmtP(invR*100)}, your ${fmt(amt)} grows to ${fmt(nominal)} — a ${gainPct}% nominal gain. Real return after inflation: ${fmtP(realR)}/year.`;
+  const lbls=[],cashV=[],invV=[],ppV=[];
+  for(let yr=0;yr<=yrs;yr+=Math.max(1,Math.floor(yrs/20))){lbls.push('Yr '+yr);cashV.push(amt);invV.push(amt*Math.pow(1+invR,yr));ppV.push(amt/Math.pow(1+infR,yr));}
+  const d={labels:lbls,datasets:[{label:'Invested (nominal)',data:invV,borderColor:'#daa520',backgroundColor:'rgba(218,165,32,.1)',fill:true,tension:.4,borderWidth:2,pointRadius:0},{label:'Cash (nominal)',data:cashV,borderColor:'rgba(255,255,255,.25)',fill:false,tension:0,borderWidth:1.5,borderDash:[4,3],pointRadius:0},{label:'Cash (real value)',data:ppV,borderColor:'#ae2012',backgroundColor:'rgba(174,32,18,.07)',fill:true,tension:.4,borderWidth:1.5,pointRadius:0}]};
+  if(!infChartI)infChartI=mkChart('infChart',d);else upChart(infChartI,d);
+}
+
+// ═══════════ 5. COMPARE ═══════════
+function cmpUpdate(){
+  const amt=+document.getElementById('cmp-amt').value,yrs=+document.getElementById('cmp-yrs').value;
+  const invR=+document.getElementById('cmp-inv').value/100,savR=+document.getElementById('cmp-sav').value/100,infR=+document.getElementById('cmp-inf').value/100;
+  document.getElementById('cmp-amt-d').textContent=fmt(amt);document.getElementById('cmp-yrs-d').textContent=yrs+' years';
+  document.getElementById('cmp-inv-d').textContent=fmtP(invR*100);document.getElementById('cmp-sav-d').textContent=fmtP(savR*100);
+  document.getElementById('cmp-inf-d').textContent=fmtP(infR*100);document.getElementById('cmp-yrs-lbl').textContent=yrs;
+  const invested=amt*Math.pow(1+invR,yrs),savings=amt*Math.pow(1+savR,yrs),cashReal=amt/Math.pow(1+infR,yrs);
+  const maxV=invested;
+  const scenarios=[{label:'Invested at '+fmtP(invR*100),value:invested,real:invested/Math.pow(1+infR,yrs),color:'#daa520'},{label:'Savings at '+fmtP(savR*100),value:savings,real:savings/Math.pow(1+infR,yrs),color:'#40916c'},{label:'Cash (real purchasing power)',value:amt,real:cashReal,color:'#9994a0'}];
+  document.getElementById('cmp-bars').innerHTML=scenarios.map(s=>`<div class="comp-bar-wrap"><div class="comp-bar-label"><span>${s.label}</span><span style="color:rgba(255,255,255,.9);font-family:'DM Serif Display',serif;font-size:.88rem">${fmt(s.value)}<span style="font-family:'Space Mono',monospace;font-size:.52rem;color:rgba(255,255,255,.35);margin-left:.35rem">real: ${fmt(s.real)}</span></span></div><div class="comp-bar-track"><div class="comp-bar-fill" style="width:${Math.round(s.value/maxV*100)}%;background:${s.color}"></div></div></div>`).join('');
+  document.getElementById('cmp-verdict').textContent=`Investing beats high-yield savings by ${fmt(invested-savings)} after ${yrs} years. Cash loses ${fmt(amt-cashReal)} in real purchasing power to inflation. The invested portfolio is ${Math.round(invested/amt*10)/10}× the nominal value of cash.`;
+  const lbls=[],dInv=[],dSav=[],dCash=[];
+  for(let yr=0;yr<=yrs;yr+=Math.max(1,Math.floor(yrs/25))){lbls.push('Yr '+yr);dInv.push(amt*Math.pow(1+invR,yr));dSav.push(amt*Math.pow(1+savR,yr));dCash.push(amt/Math.pow(1+infR,yr));}
+  const d={labels:lbls,datasets:[{label:'Invested',data:dInv,borderColor:'#daa520',backgroundColor:'rgba(218,165,32,.08)',fill:true,tension:.4,borderWidth:2,pointRadius:0},{label:'High-yield savings',data:dSav,borderColor:'#40916c',backgroundColor:'rgba(64,145,108,.06)',fill:true,tension:.4,borderWidth:1.5,pointRadius:0},{label:'Cash real value',data:dCash,borderColor:'#ae2012',fill:false,tension:.4,borderWidth:1.5,borderDash:[4,3],pointRadius:0}]};
+  if(!cmpChartI)cmpChartI=mkChart('cmpChart',d);else upChart(cmpChartI,d);
+}
+
+// ═══════════ INIT ═══════════
+document.addEventListener('DOMContentLoaded',()=>{
+  ciUpdate();sgUpdate();retUpdate();infUpdate();cmpUpdate();
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));});},{threshold:.25,rootMargin:'-56px 0px 0px 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+});
+</script>
+</body>
+</html>
