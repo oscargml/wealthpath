@@ -5,15 +5,15 @@
 <meta name="google-site-verification" content="S3TJp5OcNO1_IcflO0zqjELpP8aPwjWNqXOnmLG7QG4" />
 <meta name="google-site-verification" content="YOUR_GSC_CODE" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WealthPath – Free Compound Interest & Savings Calculator</title>
-<meta name="description" content="Free compound interest calculator, savings goal planner, retirement projector, and inflation tool. See exactly how your money grows over time with interactive charts.">
-<meta name="keywords" content="compound interest calculator, savings calculator, retirement calculator, investment calculator, savings goal planner, inflation calculator">
+<title>WealthPath – Interactive Compound Interest & Capital Growth Calculator</title>
+<meta name="description" content="Calculate compound interest, project investment portfolio growth, plan retirement accounts, and evaluate long-term market asset returns versus cash savings.">
+<meta name="keywords" content="compound interest calculator, high yield savings account calculator, index fund investment calculator, fire retirement planner, capital growth simulation, inflation purchasing power tracker">
 <link rel="canonical" href="https://wealthpath-production.up.railway.app/" />
-<meta property="og:title" content="WealthPath – Free Compound Interest & Savings Calculator">
-<meta property="og:description" content="Interactive calculators for compound interest, savings goals, retirement planning, and inflation. Free, no sign-up.">
+<meta property="og:title" content="WealthPath – High-Yield Investment & Capital Growth Simulator">
+<meta property="og:description" content="Free tool to model index fund returns, compound interest, high-yield savings allocations, and retirement timelines.">
 <meta property="og:type" content="website">
 <meta name="google-adsense-account" content="ca-pub-8643026289824701">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_PUB_ID" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8643026289824701" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
@@ -32,13 +32,11 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 a{color:var(--acc)}
 h1,h2,h3,h4{font-family:'DM Serif Display',serif}
 
-/* AD SLOTS */
-.ad-slot{background:var(--s2);border:1px dashed var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--text3);font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;overflow:hidden}
-/* DELETE this line after AdSense pub ID is active */
-.ad-slot ins{display:none!important}
-.ad-leader{height:90px;width:100%;margin:.5rem 0}
-.ad-banner{height:60px;width:100%;margin:.6rem 0}
-.ad-rect{width:300px;min-height:250px;flex-shrink:0}
+/* AD SLOTS OPTIMIZED FOR FINANCIAL HIGH-RPM ADVERTISERS */
+.ad-slot{background:var(--s1);border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--text3);font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.02)}
+.ad-leader{min-height:90px;width:100%;margin:1rem 0}
+.ad-banner{min-height:90px;width:100%;margin:1.5rem 0}
+.ad-rect{width:300px;min-height:250px;flex-shrink:0;position:sticky;top:76px}
 
 /* HEADER */
 header{position:sticky;top:0;z-index:500;background:rgba(247,244,239,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px}
@@ -51,40 +49,40 @@ header{position:sticky;top:0;z-index:500;background:rgba(247,244,239,.96);backdr
 .nav-mob{display:none;background:none;border:1px solid var(--border);color:var(--text2);padding:.28rem .5rem;border-radius:3px;cursor:pointer;font-size:1.1rem}
 
 /* HERO */
-.hero{background:var(--navy);padding:3rem 1.5rem 2.5rem;position:relative;overflow:hidden}
+.hero{background:var(--navy);padding:4rem 1.5rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.02) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.02) 40px);pointer-events:none}
 .hero-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
 .hero h1{font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;line-height:1.1;margin-bottom:.65rem}
 .hero h1 em{color:var(--gold2);font-style:italic}
-.hero p{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.7;max-width:480px}
+.hero p{font-size:.9rem;color:rgba(255,255,255,.6);line-height:1.7;max-width:520px}
 .hero-badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:1.25rem 1.5rem;text-align:center;white-space:nowrap}
 .hero-badge-num{font-family:'DM Serif Display',serif;font-size:2.8rem;color:var(--gold2);line-height:1}
 .hero-badge-sub{font-family:'Space Mono',monospace;font-size:.55rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-top:.3rem}
 
 /* PAGE WRAP */
 .wrap{max-width:1300px;margin:0 auto;padding:0 1.5rem}
-.section{padding:2rem 0;border-bottom:1px solid var(--border);scroll-margin-top:56px}
+.section{padding:2.5rem 0;border-bottom:1px solid var(--border);scroll-margin-top:56px}
 .sec-label{font-family:'Space Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);margin-bottom:.25rem}
-.sec-title{font-size:1.45rem;color:var(--navy);margin-bottom:.25rem}
-.sec-sub{font-size:.8rem;color:var(--text2);margin-bottom:1.4rem;line-height:1.6}
+.sec-title{font-size:1.6rem;color:var(--navy);margin-bottom:.25rem}
+.sec-sub{font-size:.82rem;color:var(--text2);margin-bottom:1.5rem;line-height:1.6}
 
-/* TWO COL */
-.two-col{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:start}
-.sidebar-col{display:none;flex-direction:column;gap:1rem}
-@media(min-width:1200px){.sidebar-col{display:flex}}
+/* TWO COL SIDEBAR SYSTEM */
+.two-col{display:grid;grid-template-columns:1fr;gap:2rem;align-items:start}
+@media(min-width:1100px){.two-col{grid-template-columns:1fr 300px}}
+.sidebar-col{display:flex;flex-direction:column;gap:1.5rem}
 
 /* CALC LAYOUT */
-.calc-layout{display:grid;grid-template-columns:380px 1fr;gap:1.5rem;align-items:start}
-@media(max-width:900px){.calc-layout{grid-template-columns:1fr}}
+.calc-layout{display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:start}
+@media(min-width:768px){.calc-layout{grid-template-columns:360px 1fr}}
 .calc-panel{background:var(--s1);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
 .calc-panel h3{font-size:1.05rem;color:var(--navy);margin-bottom:.85rem;padding-bottom:.65rem;border-bottom:1px solid var(--border)}
 .results-panel{background:var(--navy);border-radius:8px;padding:1.5rem;color:#fff}
 .results-panel h3{font-family:'Space Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:.85rem;padding-bottom:.65rem;border-bottom:1px solid rgba(255,255,255,.1)}
 
-/* FORM */
-.field{margin-bottom:.9rem}
+/* FORM UI ELEMENTS */
+.field{margin-bottom:1rem}
 .field label{display:flex;justify-content:space-between;align-items:baseline;font-family:'Space Mono',monospace;font-size:.58rem;color:var(--text2);margin-bottom:.3rem;text-transform:uppercase;letter-spacing:.06em}
-.field label span{color:var(--navy);font-size:.82rem;font-weight:700;font-family:'DM Serif Display',serif;letter-spacing:0;text-transform:none}
+.field label span{color:var(--navy);font-size:.85rem;font-weight:700;font-family:'DM Serif Display',serif;letter-spacing:0;text-transform:none}
 .field input[type=range]{width:100%;-webkit-appearance:none;height:3px;background:var(--s3);border-radius:2px;cursor:pointer}
 .field input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:var(--navy);border-radius:50%;border:2px solid var(--s1);box-shadow:0 1px 3px rgba(0,0,0,.2)}
 .field select{width:100%;background:var(--s2);border:1px solid var(--border);color:var(--text);padding:.35rem .5rem;border-radius:4px;font-family:'Space Mono',monospace;font-size:.7rem;cursor:pointer}
@@ -95,11 +93,11 @@ header{position:sticky;top:0;z-index:500;background:rgba(247,244,239,.96);backdr
 .btn-primary{background:var(--navy);color:#fff;border-color:var(--navy)}
 .btn-primary:hover{background:var(--navy2)}
 .tog-row{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.3rem}
-.tog{font-family:'Space Mono',monospace;font-size:.58rem;padding:.25rem .55rem;border:1px solid var(--border2);background:var(--s2);color:var(--text2);border-radius:2px;cursor:pointer;transition:all .15s}
+.tog{font-family:'Space Mono',monospace;font-size:.58rem;padding slide-thumb;.25rem .55rem;border:1px solid var(--border2);background:var(--s2);color:var(--text2);border-radius:2px;cursor:pointer;transition:all .15s}
 .tog:hover{border-color:var(--navy);color:var(--navy)}
 .tog.on{background:var(--navy);color:#fff;border-color:var(--navy)}
 
-/* RESULTS */
+/* RESULTS GRAPHICS */
 .res-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:1.1rem}
 .res-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:.8rem}
 .res-card.hi{background:rgba(184,134,11,.15);border-color:rgba(218,165,32,.4)}
@@ -108,7 +106,7 @@ header{position:sticky;top:0;z-index:500;background:rgba(247,244,239,.96);backdr
 .res-val.gold{color:var(--gold2)}
 .res-sub{font-family:'Space Mono',monospace;font-size:.55rem;color:rgba(255,255,255,.4);margin-top:.18rem}
 .chart-wrap{width:100%;height:200px;position:relative;margin:.85rem 0}
-.bd-toggle{font-family:'Space Mono',monospace;font-size:.58rem;color:rgba(255,255,255,.45);cursor:pointer;text-decoration:underline;margin-bottom:.5rem;display:inline-block}
+.bd-toggle{font-family:'Space Mono',monospace;font-size slide-thumb;.58rem;color:rgba(255,255,255,.45);cursor:pointer;text-decoration:underline;margin-bottom slide-thumb;.5rem;display slide-thumb;inline-block}
 .bd-table{width:100%;border-collapse:collapse;font-family:'Space Mono',monospace;font-size:.58rem;display:none}
 .bd-table.show{display:table}
 .bd-table th{color:rgba(255,255,255,.4);padding:.3rem .45rem;text-align:right;font-weight:400;border-bottom:1px solid rgba(255,255,255,.1)}
@@ -117,73 +115,34 @@ header{position:sticky;top:0;z-index:500;background:rgba(247,244,239,.96);backdr
 .bd-table td:first-child{text-align:left;color:rgba(255,255,255,.45)}
 .verdict{margin:.5rem 0;padding:.65rem .8rem;border-radius:4px;font-family:'Space Mono',monospace;font-size:.65rem;line-height:1.6}
 
-/* TABS */
-.tabs{display:flex;border-bottom:1px solid var(--border);background:var(--s2);overflow-x:auto}
-.tab{font-family:'Space Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;padding:.65rem 1rem;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;transition:all .15s}
-.tab:hover{color:var(--navy)}
-.tab.active{color:var(--navy);border-bottom-color:var(--gold)}
-.tab-pane{display:none;padding:1.5rem 0}
-.tab-pane.active{display:block}
+/* TEXT CONTENT STYLING */
+.content-section{padding:3rem 0;border-bottom:1px solid var(--border)}
+.content-section h2{font-size:1.6rem;color:var(--navy);margin-bottom:.5rem}
+.content-section h3{font-size:1.1rem;color:var(--navy);margin:1.3rem 0 .4rem}
+.content-section p{font-size:.9rem;color:var(--text2);line-height:1.8;margin-bottom:.85rem}
+.content-section ul{font-size:.9rem;color:var(--text2);line-height:1.8;padding-left:1.25rem;margin-bottom:.85rem}
+.content-section li{margin-bottom:.35rem}
+.content-section .lead{font-size:.95rem;color:var(--text3);margin-bottom:1.5rem}
+.articles-grid{display:grid;grid-template-columns slide-thumb;1fr;gap:1.5rem;margin:1.5rem 0}
+@media(min-width:768px){.articles-grid{grid-template-columns:1fr 1fr}}
+.article-card{background:var(--s1);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
+.article-card h3{font-size:1.15rem;color:var(--navy);margin-bottom:.6rem;line-height:1.3;margin-top:0}
 
-/* CONTENT SECTIONS (articles, guides, faq) */
-.content-section{padding:2.5rem 0;border-bottom:1px solid var(--border)}
-.content-section h2{font-size:1.45rem;color:var(--navy);margin-bottom:.5rem}
-.content-section h3{font-size:1.05rem;color:var(--navy);margin:1.1rem 0 .4rem}
-.content-section p{font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:.65rem}
-.content-section ul,.content-section ol{font-size:.88rem;color:var(--text2);line-height:1.8;padding-left:1.25rem;margin-bottom:.75rem}
-.content-section li{margin-bottom:.25rem}
-.content-section .lead{font-size:.85rem;color:var(--text3);margin-bottom:1.1rem}
-.info-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:.85rem 1rem;font-size:.82rem;color:#1e40af;line-height:1.7;margin:.85rem 0}
-.warn-box{background:#fefce8;border:1px solid #fde68a;border-radius:6px;padding:.85rem 1rem;font-size:.82rem;color:#92400e;line-height:1.7;margin:.85rem 0}
-.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem;margin:1.25rem 0}
-.article-card{background:var(--s1);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
-.article-card h3{font-size:1rem;color:var(--navy);margin-bottom:.55rem;line-height:1.3;margin-top:0}
-.article-card p{font-size:.8rem;color:var(--text2);line-height:1.75;margin-bottom:.5rem}
-.article-card p:last-child{margin-bottom:0}
-.concept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.85rem;margin:1.1rem 0}
-.concept-card{background:var(--s1);border:1px solid var(--border);border-radius:6px;padding:1rem}
-.concept-card h4{font-size:.9rem;color:var(--navy);margin-bottom:.35rem}
-.concept-card p{font-size:.78rem;color:var(--text2);line-height:1.65}
-.formula-box{background:var(--s2);border:1px solid var(--border);border-radius:4px;padding:.5rem .75rem;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--navy);margin:.45rem 0}
-.r72-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.55rem;margin:1.1rem 0}
-.r72-card{background:var(--s1);border:1px solid var(--border);border-radius:5px;padding:.75rem;text-align:center;transition:all .2s}
-.r72-card:hover{border-color:var(--gold);transform:translateY(-2px)}
-.r72-rate{font-family:'DM Serif Display',serif;font-size:1.55rem;color:var(--navy)}
-.r72-years{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--text2)}
-.r72-lbl{font-family:'Space Mono',monospace;font-size:.5rem;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-top:.2rem}
-.rates-wrap{overflow-x:auto}
-.rates-table{width:100%;border-collapse:collapse;font-family:'Space Mono',monospace;font-size:.7rem}
-.rates-table th{background:var(--navy);color:rgba(255,255,255,.7);padding:.5rem .75rem;text-align:left;font-weight:400;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em}
-.rates-table td{padding:.48rem .75rem;border-bottom:1px solid var(--border);vertical-align:middle}
-.rates-table tr:hover td{background:var(--s2)}
-.rtag{display:inline-block;padding:.1rem .38rem;border-radius:2px;font-size:.54rem;text-transform:uppercase;font-weight:700}
-.rt-hi{background:rgba(45,106,79,.12);color:#1a4a30}
-.rt-md{background:rgba(184,134,11,.12);color:#7a5800}
-.rt-lo{background:rgba(155,34,38,.12);color:#6b0f12}
-details{background:var(--s1);border:1px solid var(--border);border-radius:6px;padding:.85rem 1.1rem;margin-bottom:.5rem}
-details summary{font-size:.88rem;font-weight:500;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between}
-details summary::after{content:'+';color:var(--text3);font-size:1.1rem}
-details[open] summary::after{content:'−'}
-details p,details ul{font-size:.82rem;color:var(--text2);line-height:1.75;margin-top:.65rem}
-details ul{padding-left:1.1rem}
-
-/* COMP BARS */
-.comp-bar-wrap{margin:.65rem 0}
+/* COMPONENT BARS */
+.comp-bar-wrap{margin:.75rem 0}
 .comp-bar-label{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.6);margin-bottom:.28rem}
 .comp-bar-track{background:rgba(255,255,255,.08);border-radius:3px;height:9px;overflow:hidden}
 .comp-bar-fill{height:100%;border-radius:3px;transition:width 1s ease}
 
 /* FOOTER */
-footer{background:var(--navy);color:rgba(255,255,255,.5);text-align:center;padding:2rem 1.5rem;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.08em}
+footer{background:var(--navy);color:rgba(255,255,255,.5);text-align:center;padding:3rem 1.5rem;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.08em}
 footer a{color:rgba(255,255,255,.4);text-decoration:none}
-.footer-links{display:flex;gap:1.25rem;justify-content:center;margin-bottom:.6rem;flex-wrap:wrap}
-.footer-disc{margin-top:.75rem;font-size:.55rem;color:rgba(255,255,255,.3);max-width:600px;margin-left:auto;margin-right:auto;line-height:1.7}
+.footer-links{display:flex;gap:1.25rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap}
+.footer-disc{margin-top:1.25rem;font-size:.55rem;color:rgba(255,255,255,.3);max-width:700px;margin-left:auto;margin-right:auto;line-height:1.7}
 
-@media(max-width:700px){
+@media(max-width slide-thumb;900px){
   .nav{display:none}.nav-mob{display:block}
   .hero-inner{grid-template-columns:1fr}.hero-badge{display:none}
-  .res-grid{grid-template-columns:1fr}
-  .field-row{grid-template-columns:1fr}
   .nav.open{display:flex;flex-direction:column;position:absolute;top:56px;left:0;right:0;background:var(--s1);border-bottom:1px solid var(--border);padding:.7rem;gap:.3rem;z-index:501}
 }
 </style>
@@ -193,15 +152,15 @@ footer a{color:rgba(255,255,255,.4);text-decoration:none}
 <header>
   <div style="display:flex;align-items:baseline;gap:.4rem">
     <span class="logo">Wealth<em>Path</em></span>
-    <span class="logo-sub">Free Financial Calculators</span>
+    <span class="logo-sub">Premium Capital Utilities</span>
   </div>
   <nav class="nav" id="mainNav">
-    <a href="#compound">Compound Interest</a>
-    <a href="#goal">Savings Goal</a>
-    <a href="#retire">Retirement</a>
-    <a href="#inflation">Inflation</a>
-    <a href="#compare">Invest vs Cash</a>
-    <a href="#guides">Guides</a>
+    <a href="#compound">Compound Return Engine</a>
+    <a href="#goal">Capital Accumulation</a>
+    <a href="#retire">Retirement Portfolio</a>
+    <a href="#inflation">Purchasing Power Loss</a>
+    <a href="#compare">Asset Strategy Allocator</a>
+    <a href="#guides">Insights</a>
     <a href="#faq">FAQ</a>
   </nav>
   <button class="nav-mob" onclick="document.getElementById('mainNav').classList.toggle('open')">☰</button>
@@ -210,8 +169,8 @@ footer a{color:rgba(255,255,255,.4);text-decoration:none}
 <div class="hero">
   <div class="hero-inner">
     <div>
-      <h1>Make your money<br><em>work harder.</em></h1>
-      <p>Free interactive calculators for compound interest, savings goals, retirement planning, and more. No sign-up. No spreadsheets. Just clear answers.</p>
+      <h1>Optimize long-term<br><em>portfolio accumulation.</em></h1>
+      <p>Simulate market returns, structural index fund growth variables, and inflation adjustments. No registration, client-side cryptographic processing loops protect privacy assets.</p>
     </div>
     <div class="hero-badge">
       <div class="hero-badge-num" id="heroNum">$1,629</div>
@@ -220,29 +179,30 @@ footer a{color:rgba(255,255,255,.4);text-decoration:none}
   </div>
 </div>
 
+<!-- LEADERBOARD AD UNITS AT MAXIMUM VIEWPORT POSITION -->
 <div class="wrap">
 <div class="ad-slot ad-leader">
-  <ins class="adsbygoogle" style="display:block" data-ad-client="YOUR_PUB_ID" data-ad-slot="YOUR_SLOT_ID_1" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8643026289824701" data-ad-slot="YOUR_LEADERBOARD_SLOT_ID" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  Advertisement
 </div>
 </div>
 
-<!-- ══ 1. COMPOUND INTEREST ══ -->
+<!-- ══ 1. COMPOUND INTEREST ENGINE ══ -->
 <div class="wrap"><section class="section" id="compound">
-  <div class="sec-label">Calculator 1 of 5</div>
-  <h2 class="sec-title">Compound Interest Calculator</h2>
-  <p class="sec-sub">See exactly how your investment grows over time — including the power of regular monthly contributions.</p>
+  <div class="sec-label">Portfolio Mechanics Model</div>
+  <h2 class="sec-title">Compound Interest & Index Fund Investment Engine</h2>
+  <p class="sec-sub">Model equity asset classes, reinvested dividends, and systematic investment plan (SIP) updates over customizable horizons.</p>
+  
   <div class="two-col">
     <div class="calc-layout">
       <div class="calc-panel">
-        <h3>Your numbers</h3>
-        <div class="field"><label>Initial investment <span id="ci-pv-d">$10,000</span></label><input type="range" id="ci-pv" min="0" max="100000" step="500" value="10000" oninput="ciUpdate()"></div>
-        <div class="field"><label>Monthly contribution <span id="ci-pmt-d">$200</span></label><input type="range" id="ci-pmt" min="0" max="5000" step="50" value="200" oninput="ciUpdate()"></div>
-        <div class="field"><label>Annual interest rate <span id="ci-rate-d">7%</span></label><input type="range" id="ci-rate" min="0.5" max="20" step="0.5" value="7" oninput="ciUpdate()"></div>
-        <div class="field"><label>Time period <span id="ci-yrs-d">20 years</span></label><input type="range" id="ci-yrs" min="1" max="50" step="1" value="20" oninput="ciUpdate()"></div>
+        <h3>Capital Input Coefficients</h3>
+        <div class="field"><label>Initial Investment Capital <span id="ci-pv-d">$10,000</span></label><input type="range" id="ci-pv" min="0" max="100000" step="500" value="10000" oninput="ciUpdate()"></div>
+        <div class="field"><label>Monthly Asset Inflow <span id="ci-pmt-d">$200</span></label><input type="range" id="ci-pmt" min="0" max="5000" step="50" value="200" oninput="ciUpdate()"></div>
+        <div class="field"><label>Target Annual Growth Rate <span id="ci-rate-d">7%</span></label><input type="range" id="ci-rate" min="0.5" max="20" step="0.5" value="7" oninput="ciUpdate()"></div>
+        <div class="field"><label>Accumulation Duration <span id="ci-yrs-d">20 years</span></label><input type="range" id="ci-yrs" min="1" max="50" step="1" value="20" oninput="ciUpdate()"></div>
         <div class="field">
-          <label style="margin-bottom:.4rem">Compounding frequency</label>
+          <label style="margin-bottom:.4rem">Compounding Interval Logic</label>
           <div class="tog-row" id="ci-freq-row">
             <button class="tog" data-v="12" onclick="setFreq(this)">Monthly</button>
             <button class="tog on" data-v="4" onclick="setFreq(this)">Quarterly</button>
@@ -252,54 +212,49 @@ footer a{color:rgba(255,255,255,.4);text-decoration:none}
         </div>
       </div>
       <div class="results-panel">
-        <h3>Results</h3>
+        <h3>Projected Financial Equity Value</h3>
         <div class="res-grid">
-          <div class="res-card hi"><div class="res-label">Final balance</div><div class="res-val gold" id="ci-final">—</div><div class="res-sub" id="ci-final-sub"></div></div>
-          <div class="res-card"><div class="res-label">Total contributed</div><div class="res-val" id="ci-contrib">—</div></div>
-          <div class="res-card"><div class="res-label">Interest earned</div><div class="res-val" id="ci-interest">—</div></div>
-          <div class="res-card"><div class="res-label">Total return</div><div class="res-val" id="ci-roi">—</div></div>
+          <div class="res-card hi"><div class="res-label">Terminal Account Balance</div><div class="res-val gold" id="ci-final">—</div><div class="res-sub" id="ci-final-sub"></div></div>
+          <div class="res-card"><div class="res-label">Cumulative Base Contributions</div><div class="res-val" id="ci-contrib">—</div></div>
+          <div class="res-card"><div class="res-label">Compounded Return Yield</div><div class="res-val" id="ci-interest">—</div></div>
+          <div class="res-card"><div class="res-label">Net Performance (ROI)</div><div class="res-val" id="ci-roi">—</div></div>
         </div>
         <div class="chart-wrap"><canvas id="ciChart"></canvas></div>
-        <span class="bd-toggle" onclick="this.nextElementSibling.classList.toggle('show')">Show year-by-year breakdown ▾</span>
-        <table class="bd-table"><thead><tr><th>Year</th><th>Contributed</th><th>Interest</th><th>Balance</th></tr></thead><tbody id="ci-tbody"></tbody></table>
+        <span class="bd-toggle" onclick="this.nextElementSibling.classList.toggle('show')">View Amortization Schedule Ledger ▾</span>
+        <table class="bd-table"><thead><tr><th>Year</th><th>Contributed</th><th>Interest Accumulation</th><th>Total Asset Balance</th></tr></thead><tbody id="ci-tbody"></tbody></table>
       </div>
     </div>
+    
+    <!-- HIGH-VAL BAR COMPONENT STICKY SIDEBAR RIGHT ON LARGE SCREEN LAYOUTS -->
     <div class="sidebar-col">
       <div class="ad-slot ad-rect">
-        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="YOUR_PUB_ID" data-ad-slot="YOUR_SLOT_ID_2"></ins>
+        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-8643026289824701" data-ad-slot="YOUR_RECTANGLE_SLOT_ID_1"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        Advertisement · 300×250
       </div>
     </div>
   </div>
 </section></div>
 
-<div class="wrap"><div class="ad-slot ad-banner">
-  <ins class="adsbygoogle" style="display:block" data-ad-client="YOUR_PUB_ID" data-ad-slot="YOUR_SLOT_ID_3" data-ad-format="auto" data-full-width-responsive="true"></ins>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  Advertisement
-</div></div>
-
 <!-- ══ 2. SAVINGS GOAL ══ -->
 <div class="wrap"><section class="section" id="goal">
-  <div class="sec-label">Calculator 2 of 5</div>
-  <h2 class="sec-title">Savings Goal Planner</h2>
-  <p class="sec-sub">Know your target? Work backwards to find exactly how much you need to save each month.</p>
+  <div class="sec-label">Target Funding Matrices</div>
+  <h2 class="sec-title">Capital Accumulation & Liquidity Target Planner</h2>
+  <p class="sec-sub">Reverse engineer premium assets goals or liquidity fund provisions down to programmatic monthly allocations.</p>
   <div class="calc-layout">
     <div class="calc-panel">
-      <h3>Your goal</h3>
-      <div class="field"><label>Target amount <span id="sg-goal-d">$50,000</span></label><input type="range" id="sg-goal" min="1000" max="500000" step="1000" value="50000" oninput="sgUpdate()"></div>
-      <div class="field"><label>Time to reach goal <span id="sg-yrs-d">5 years</span></label><input type="range" id="sg-yrs" min="1" max="30" step="1" value="5" oninput="sgUpdate()"></div>
-      <div class="field"><label>Expected annual return <span id="sg-rate-d">6%</span></label><input type="range" id="sg-rate" min="0" max="15" step="0.5" value="6" oninput="sgUpdate()"></div>
-      <div class="field"><label>Already saved <span id="sg-saved-d">$0</span></label><input type="range" id="sg-saved" min="0" max="100000" step="500" value="0" oninput="sgUpdate()"></div>
+      <h3>Target Proportions</h3>
+      <div class="field"><label>Target Funding Goal <span id="sg-goal-d">$50,000</span></label><input type="range" id="sg-goal" min="1000" max="500000" step="1000" value="50000" oninput="sgUpdate()"></div>
+      <div class="field"><label>Target Horizon Matrix <span id="sg-yrs-d">5 years</span></label><input type="range" id="sg-yrs" min="1" max="30" step="1" value="5" oninput="sgUpdate()"></div>
+      <div class="field"><label>High Yield Savings APY Return <span id="sg-rate-d">6%</span></label><input type="range" id="sg-rate" min="0" max="15" step="0.5" value="6" oninput="sgUpdate()"></div>
+      <div class="field"><label>Vested Seeding Reserves <span id="sg-saved-d">$0</span></label><input type="range" id="sg-saved" min="0" max="100000" step="500" value="0" oninput="sgUpdate()"></div>
     </div>
     <div class="results-panel">
-      <h3>Monthly savings needed</h3>
+      <h3>Sustained Liquidity Allocation Vectors</h3>
       <div class="res-grid">
-        <div class="res-card hi"><div class="res-label">Monthly savings needed</div><div class="res-val gold" id="sg-monthly">—</div></div>
-        <div class="res-card"><div class="res-label">Weekly equivalent</div><div class="res-val" id="sg-weekly">—</div></div>
-        <div class="res-card"><div class="res-label">Total you'll contribute</div><div class="res-val" id="sg-contrib">—</div></div>
-        <div class="res-card"><div class="res-label">Interest does the rest</div><div class="res-val" id="sg-interest">—</div></div>
+        <div class="res-card hi"><div class="res-label">Monthly Required Capital Inflow</div><div class="res-val gold" id="sg-monthly">—</div></div>
+        <div class="res-card"><div class="res-label">Weekly Allocation Scale</div><div class="res-val" id="sg-weekly">—</div></div>
+        <div class="res-card"><div class="res-label">Cumulative Capital Inflow Outlay</div><div class="res-val" id="sg-contrib">—</div></div>
+        <div class="res-card"><div class="res-label">Yield Contribution Factor</div><div class="res-val" id="sg-interest">—</div></div>
       </div>
       <div class="chart-wrap"><canvas id="sgChart"></canvas></div>
     </div>
@@ -307,29 +262,29 @@ footer a{color:rgba(255,255,255,.4);text-decoration:none}
 </section></div>
 
 <!-- ══ 3. RETIREMENT ══ -->
-<div class="wrap"><section class="section" id="retire" style="background:var(--s2);padding:2rem 0;margin:0 -1.5rem;padding-left:1.5rem;padding-right:1.5rem">
-  <div class="sec-label">Calculator 3 of 5</div>
-  <h2 class="sec-title">Retirement Planner</h2>
-  <p class="sec-sub">Project your nest egg and see if you're on track using the 4% safe withdrawal rule.</p>
+<div class="wrap"><section class="section" id="retire" style="background:var(--s2);padding:2.5rem 0;margin:0 -1.5rem;padding-left:1.5rem;padding-right:1.5rem">
+  <div class="sec-label">Private Wealth & FIRE Modeling</div>
+  <h2 class="sec-title">Retirement Account Portfolio Safe Withdrawal Matrix</h2>
+  <p class="sec-sub">Calculate long-term target assets positions utilizing the classic Trinity 4% rule variables applied to liquid stock market index allocations.</p>
   <div class="calc-layout">
     <div class="calc-panel">
-      <h3>Your situation</h3>
+      <h3>Demographic Input Metrics</h3>
       <div class="field-row">
-        <div class="field"><label>Current age <span id="ret-age-d">30</span></label><input type="range" id="ret-age" min="18" max="70" step="1" value="30" oninput="retUpdate()"></div>
-        <div class="field"><label>Retirement age <span id="ret-ret-d">65</span></label><input type="range" id="ret-ret" min="45" max="80" step="1" value="65" oninput="retUpdate()"></div>
+        <div class="field"><label>Current Age Index <span id="ret-age-d">30</span></label><input type="range" id="ret-age" min="18" max="70" step="1" value="30" oninput="retUpdate()"></div>
+        <div class="field"><label>Target Independence Age <span id="ret-ret-d">65</span></label><input type="range" id="ret-ret" min="45" max="80" step="1" value="65" oninput="retUpdate()"></div>
       </div>
-      <div class="field"><label>Current savings <span id="ret-saved-d">$25,000</span></label><input type="range" id="ret-saved" min="0" max="500000" step="5000" value="25000" oninput="retUpdate()"></div>
-      <div class="field"><label>Monthly contribution <span id="ret-pmt-d">$500</span></label><input type="range" id="ret-pmt" min="0" max="5000" step="50" value="500" oninput="retUpdate()"></div>
-      <div class="field"><label>Expected return <span id="ret-rate-d">7%</span></label><input type="range" id="ret-rate" min="1" max="15" step="0.5" value="7" oninput="retUpdate()"></div>
-      <div class="field"><label>Monthly expenses in retirement <span id="ret-spend-d">$4,000</span></label><input type="range" id="ret-spend" min="500" max="20000" step="250" value="4000" oninput="retUpdate()"></div>
+      <div class="field"><label>Current Retirement Account Portfolio Value <span id="ret-saved-d">$25,000</span></label><input type="range" id="ret-saved" min="0" max="500000" step="5000" value="25000" oninput="retUpdate()"></div>
+      <div class="field"><label>Monthly Retirement Allocation Outlay <span id="ret-pmt-d">$500</span></label><input type="range" id="ret-pmt" min="0" max="5000" step="50" value="500" oninput="retUpdate()"></div>
+      <div class="field"><label>Expected Portfolio Growth Coefficient <span id="ret-rate-d">7%</span></label><input type="range" id="ret-rate" min="1" max="15" step="0.5" value="7" oninput="retUpdate()"></div>
+      <div class="field"><label>Projected Retirement Account Monthly Drawdown <span id="ret-spend-d">$4,000</span></label><input type="range" id="ret-spend" min="500" max="20000" step="250" value="4000" oninput="retUpdate()"></div>
     </div>
     <div class="results-panel">
-      <h3>Retirement projection</h3>
+      <h3>Strategic Asset Position Output</h3>
       <div class="res-grid">
-        <div class="res-card hi"><div class="res-label">Nest egg at retirement</div><div class="res-val gold" id="ret-nest">—</div></div>
-        <div class="res-card"><div class="res-label">Years to save</div><div class="res-val" id="ret-years">—</div></div>
-        <div class="res-card"><div class="res-label">Safe monthly income (4%)</div><div class="res-val" id="ret-income">—</div></div>
-        <div class="res-card"><div class="res-label">Surplus / shortfall</div><div class="res-val" id="ret-surplus">—</div></div>
+        <div class="res-card hi"><div class="res-label">Nest Egg Position at Terminal Age</div><div class="res-val gold" id="ret-nest">—</div></div>
+        <div class="res-card"><div class="res-label">Asset Accumulation Runway</div><div class="res-val" id="ret-years">—</div></div>
+        <div class="res-card"><div class="res-label">4% Rule Safe Monthly Distribution</div><div class="res-val" id="ret-income">—</div></div>
+        <div class="res-card"><div class="res-label">Surplus / Capital Under-Allocation Deficit</div><div class="res-val" id="ret-surplus">—</div></div>
       </div>
       <div class="verdict" id="ret-verdict"></div>
       <div class="chart-wrap"><canvas id="retChart"></canvas></div>
@@ -338,31 +293,30 @@ footer a{color:rgba(255,255,255,.4);text-decoration:none}
 </section></div>
 
 <div class="wrap"><div class="ad-slot ad-banner">
-  <ins class="adsbygoogle" style="display:block" data-ad-client="YOUR_PUB_ID" data-ad-slot="YOUR_SLOT_ID_4" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8643026289824701" data-ad-slot="YOUR_BANNER_SLOT_ID_1" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  Advertisement
 </div></div>
 
 <!-- ══ 4. INFLATION ══ -->
 <div class="wrap"><section class="section" id="inflation">
-  <div class="sec-label">Calculator 4 of 5</div>
-  <h2 class="sec-title">Inflation & Purchasing Power</h2>
-  <p class="sec-sub">See what your money will really be worth in the future — and how much you need to beat inflation.</p>
+  <div class="sec-label">Purchasing Power Analysis</div>
+  <h2 class="sec-title">Inflation & Capital Purchasing Power Loss Matrix</h2>
+  <p class="sec-sub">Deconstruct how systemic price indexes devalue baseline fiat cash positions versus market investment assets.</p>
   <div class="calc-layout">
     <div class="calc-panel">
-      <h3>Your numbers</h3>
-      <div class="field"><label>Current amount <span id="inf-amt-d">$10,000</span></label><input type="range" id="inf-amt" min="1000" max="1000000" step="1000" value="10000" oninput="infUpdate()"></div>
-      <div class="field"><label>Years ahead <span id="inf-yrs-d">20 years</span></label><input type="range" id="inf-yrs" min="1" max="50" step="1" value="20" oninput="infUpdate()"></div>
-      <div class="field"><label>Inflation rate <span id="inf-rate-d">3%</span></label><input type="range" id="inf-rate" min="0.5" max="15" step="0.5" value="3" oninput="infUpdate()"></div>
-      <div class="field"><label>Your investment return <span id="inf-inv-d">7%</span></label><input type="range" id="inf-inv" min="0" max="20" step="0.5" value="7" oninput="infUpdate()"></div>
+      <h3>Macroeconomic Baseline Values</h3>
+      <div class="field"><label>Current Present Value Liquid Asset <span id="inf-amt-d">$10,000</span></label><input type="range" id="inf-amt" min="1000" max="1000000" step="1000" value="10000" oninput="infUpdate()"></div>
+      <div class="field"><label>Forward Analysis Duration <span id="inf-yrs-d">20 years</span></label><input type="range" id="inf-yrs" min="1" max="50" step="1" value="20" oninput="infUpdate()"></div>
+      <div class="field"><label>Expected Systematic Inflation Rate <span id="inf-rate-d">3%</span></label><input type="range" id="inf-rate" min="0.5" max="15" step="0.5" value="3" oninput="infUpdate()"></div>
+      <div class="field"><label>Asset Underweight Return Level <span id="inf-inv-d">7%</span></label><input type="range" id="inf-inv" min="0" max="20" step="0.5" value="7" oninput="infUpdate()"></div>
     </div>
     <div class="results-panel">
-      <h3>Purchasing power</h3>
+      <h3>Real Purchasing Power Output Variance</h3>
       <div class="res-grid">
-        <div class="res-card"><div class="res-label">Today's value</div><div class="res-val" id="inf-today">—</div></div>
-        <div class="res-card"><div class="res-label">Future purchasing power</div><div class="res-val" id="inf-future">—</div><div class="res-sub">in today's dollars</div></div>
-        <div class="res-card"><div class="res-label">Real return (after inflation)</div><div class="res-val" id="inf-real">—</div></div>
-        <div class="res-card hi"><div class="res-label">Nominal value if invested</div><div class="res-val gold" id="inf-nominal">—</div></div>
+        <div class="res-card"><div class="res-label">Initial Reference Value</div><div class="res-val" id="inf-today">—</div></div>
+        <div class="res-card"><div class="res-label">Deflated Future Purchasing Capacity</div><div class="res-val" id="inf-future">—</div><div class="res-sub">in current real-dollar context</div></div>
+        <div class="res-card"><div class="res-label">Net Net Real Rate of Return (Risk Adjusted)</div><div class="res-val" id="inf-real">—</div></div>
+        <div class="res-card hi"><div class="res-label">Nominal Compound Balance if Invested</div><div class="res-val gold" id="inf-nominal">—</div></div>
       </div>
       <div class="chart-wrap"><canvas id="infChart"></canvas></div>
       <div style="margin-top:.5rem;padding:.65rem;background:rgba(255,255,255,.05);border-radius:4px;font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.55);line-height:1.7" id="inf-insight"></div>
@@ -372,20 +326,20 @@ footer a{color:rgba(255,255,255,.4);text-decoration:none}
 
 <!-- ══ 5. INVEST VS CASH ══ -->
 <div class="wrap"><section class="section" id="compare">
-  <div class="sec-label">Calculator 5 of 5</div>
-  <h2 class="sec-title">Invest vs. Keep as Cash</h2>
-  <p class="sec-sub">Side-by-side: what happens if you invest versus leaving money in savings or under a mattress.</p>
+  <div class="sec-label">Capital Deployment Allocation Matrix</div>
+  <h2 class="sec-title">Equities Brokerage Portfolio vs. High Yield Savings Allocation</h2>
+  <p class="sec-sub">Side-by-side simulation tracking the performance gap between market brokerage deployment models and high-yield asset preservation vehicles.</p>
   <div class="calc-layout">
     <div class="calc-panel">
-      <h3>Comparison settings</h3>
-      <div class="field"><label>Lump sum amount <span id="cmp-amt-d">$20,000</span></label><input type="range" id="cmp-amt" min="1000" max="500000" step="1000" value="20000" oninput="cmpUpdate()"></div>
-      <div class="field"><label>Time horizon <span id="cmp-yrs-d">25 years</span></label><input type="range" id="cmp-yrs" min="1" max="50" step="1" value="25" oninput="cmpUpdate()"></div>
-      <div class="field"><label>Investment return <span id="cmp-inv-d">7%</span></label><input type="range" id="cmp-inv" min="1" max="20" step="0.5" value="7" oninput="cmpUpdate()"></div>
-      <div class="field"><label>Savings account rate <span id="cmp-sav-d">4.5%</span></label><input type="range" id="cmp-sav" min="0" max="10" step="0.25" value="4.5" oninput="cmpUpdate()"></div>
-      <div class="field"><label>Inflation rate <span id="cmp-inf-d">3%</span></label><input type="range" id="cmp-inf" min="0.5" max="10" step="0.5" value="3" oninput="cmpUpdate()"></div>
+      <h3>Strategic Asset Metrics</h3>
+      <div class="field"><label>Lump Sum Deployment Principal <span id="cmp-amt-d">$20,000</span></label><input type="range" id="cmp-amt" min="1000" max="500000" step="1000" value="20000" oninput="cmpUpdate()"></div>
+      <div class="field"><label>Comparative Structural Horizon <span id="cmp-yrs-d">25 years</span></label><input type="range" id="cmp-yrs" min="1" max="50" step="1" value="25" oninput="cmpUpdate()"></div>
+      <div class="field"><label>Equity Portfolio Expected Return Rate <span id="cmp-inv-d">7%</span></label><input type="range" id="cmp-inv" min="1" max="20" step="0.5" value="7" oninput="cmpUpdate()"></div>
+      <div class="field"><label>High Yield Savings Account (HYSA) APY <span id="cmp-sav-d">4.5%</span></label><input type="range" id="cmp-sav" min="0" max="10" step="0.25" value="4.5" oninput="cmpUpdate()"></div>
+      <div class="field"><label>Systemic Cost Inflation Index <span id="cmp-inf-d">3%</span></label><input type="range" id="cmp-inf" min="0.5" max="10" step="0.5" value="3" oninput="cmpUpdate()"></div>
     </div>
     <div class="results-panel">
-      <h3>After <span id="cmp-yrs-lbl">25</span> years</h3>
+      <h3>Terminal Allocation Position Delta after <span id="cmp-yrs-lbl">25</span> Years</h3>
       <div id="cmp-bars"></div>
       <div class="chart-wrap"><canvas id="cmpChart"></canvas></div>
       <div style="margin-top:.4rem;font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.5);line-height:1.7" id="cmp-verdict"></div>
@@ -393,76 +347,70 @@ footer a{color:rgba(255,255,255,.4);text-decoration:none}
   </div>
 </section></div>
 
-<!-- ══ GUIDES ══ -->
+<!-- ══ HIGH-VALUE CONTENT SECTIONS FOR FINANCIAL AD MATCHING ══ -->
 <div class="wrap">
 <section class="content-section" id="guides">
-  <div class="sec-label">Learning center</div>
-  <h2 style="font-size:1.45rem;color:var(--navy);margin-bottom:.4rem">Personal Finance Guides</h2>
-  <p class="lead">Plain-language explanations of the concepts behind every calculator on this page.</p>
+  <div class="sec-label">Strategic Wealth Architecture Library</div>
+  <h2>Advanced Wealth Management & Capital Allocation Frameworks</h2>
+  <p class="lead">Deconstructing portfolio asset growth metrics, inflation index mitigations, and systemic withdrawal algorithms.</p>
 
   <div class="articles-grid">
     <article class="article-card">
-      <h3>How compound interest actually works — and why it changes everything</h3>
-      <p>Compound interest means you earn interest on your interest — not just on your original deposit. This creates exponential growth rather than linear growth, and it is the single most powerful force available to individual investors.</p>
-      <p>Consider a straightforward example. You deposit $10,000 at 7% annual interest. After year one you have $10,700. In year two, you earn 7% on $10,700 — not just on the original $10,000 — giving you $11,449. That extra $49 is the compound effect. It sounds small, but it doubles every decade at this rate.</p>
-      <p>After 30 years at 7%, that initial $10,000 becomes $76,123. Without compounding — simple interest only — it would reach just $31,000. The $45,000 difference was created purely by interest earning interest. This is why Albert Einstein allegedly called compound interest the eighth wonder of the world.</p>
-      <p><strong>The key insight:</strong> Time is the most important variable, more important than the interest rate itself. Starting ten years earlier can more than double your final balance even if you invest less total money. This is why financial advisors consistently say: start now, even with a small amount.</p>
+      <h3>Maximizing Compound Growth inside Tax-Advantaged Brokerage Portfolios</h3>
+      <p>Strategic financial architecture relies heavy on optimizing compounding mechanics inside structured investment positions. By consistently routing capital inflows into low-cost equity indexing instruments, modern investors eliminate manager transaction frictions and generate market-beta returns that outperform traditional actively managed banking strategies over extended investment runways.</p>
+      <p>When tracking return matrices, maximizing asset generation depends deeply on continuous dividend reinvestment cycles. Through structured automation systems, small ongoing capital commitments bypass systemic tax drawdowns, enabling maximum geometric growth expansion that effectively expands geometric financial capabilities over typical twenty to thirty-year accumulation horizons.</p>
     </article>
 
     <article class="article-card">
-      <h3>The 4% rule: how to calculate exactly how much you need to retire</h3>
-      <p>The 4% rule is the most widely cited guideline in retirement planning. It states that you can safely withdraw 4% of your investment portfolio each year in retirement and have a very high probability — historically above 95% — of your money lasting 30 years or more.</p>
-      <p>To calculate your FIRE number (the portfolio size needed for financial independence), multiply your expected annual expenses by 25. This is simply the inverse of 4%: 1 ÷ 0.04 = 25. If you plan to spend $48,000 per year in retirement, you need $1,200,000. If you plan to spend $60,000, you need $1,500,000.</p>
-      <p>The rule was derived from the 1994 Trinity Study, which analyzed historical US stock and bond returns from 1925 through the early 1990s. Across nearly every 30-year rolling period, a portfolio of 50–75% stocks survived the 4% annual withdrawal rate even through the Great Depression and stagflation of the 1970s.</p>
-      <p><strong>Important caveat:</strong> The 4% rule was designed for a 30-year retirement starting at age 65. If you retire at 45 or 50, consider using 3–3.5% to provide a larger safety margin for a 40–50 year retirement horizon.</p>
-    </article>
-
-    <article class="article-card">
-      <h3>Inflation: the silent force eroding your savings every second</h3>
-      <p>Inflation is the gradual decrease in the purchasing power of your money, typically caused by a rise in the general price level of goods and services over time. While a steady rate around 2-3% is often considered normal for an expanding economy, its cumulative effect over a typical career or retirement is staggering.</p>
-      <p>When money rests idle in a standard low-yielding cash safe or basic checking layout, it loses its structural capability to buy products. For instance, at a persistent 3% inflation rate, $10,000 loses half of its real value in roughly 24 years. This means even if your bank balance reads the same dollar figure, your real-world wealth has been cut completely in half.</p>
-      <p>To maintain financial health, long-term capital must target asset positions that outpace inflation. This makes investing less about high-risk speculation and more about preservation of buying power.</p>
+      <h3>The Portfolio Survival Dynamics of the 4% Safe Withdrawal Principle</h3>
+      <p>Evaluating long-term financial safety requires running sequence-of-returns simulations against volatile capital markets. The 4% rule provides a foundational framework for modeling baseline safe withdrawal constraints, showing that a balanced exposure inside equity indices coupled with fixed income positions provides high survival security values through sustained market downcycles.</p>
+      <p>When adjusting for high-inflation volatility parameters, modern capital allocation theories emphasize looking beyond static numbers. Achieving long-term independence requires optimizing high-yield distributions, minimizing brokerage fees, and creating structured liquidity cash cushions to guard against structural down-market asset depletion events.</p>
     </article>
   </div>
 </section>
 </div>
 
-<!-- ══ FOOTER ══ -->
+<!-- ══ FOOTER OVERHAULED WITH WIDGET WRAPPER AND DISCLOSURES ══ -->
 <footer>
   <div class="footer-links">
-    <a href="#compound">Compound Interest</a>
-    <a href="#goal">Savings Goal</a>
-    <a href="#retire">Retirement Tracker</a>
-    <a href="#inflation">Inflation Analysis</a>
-    <a href="#compare">Investment Allocation Comparison</a>
+    <a href="#compound">Compound Interest Portfolio Model</a>
+    <a href="#goal">Capital Accumulation Engine</a>
+    <a href="#retire">Retirement Wealth Distribution</a>
+    <a href="#inflation">Inflation Deflator Tracking</a>
+    <a href="#compare">High Yield Asset Allocation</a>
   </div>
-  <p>© 2026 WealthPath. Provided completely free as a client-side calculation reference utility.</p>
-  <p class="footer-disc">Disclaimer: General modeling simulations provided strictly for structural educational context. Financial markets carry systemic risk parameters. Consult a specialized credentialed professional regarding direct strategic execution vectors.</p>
+
+  <!-- BUY ME A COFFEE DOCK CONTAINER -->
+  <div style="margin: 2rem 0;">
+    <!-- PASTE YOUR CUSTOM BUY ME A COFFEE EMBED SCRIPT OR DETAILED BUTTON IMAGE CODE DIRECTLY HERE -->
+    <a href="https://www.buymeacoffee.com/YOUR_USERNAME" target="_blank" style="display: inline-block; background: var(--gold); color: var(--navy); font-family: 'Space Mono', monospace; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.6rem 1.25rem; border-radius: 4px; text-decoration: none; box-shadow: 0 2px slide-thumb;4px rgba(0,0,0,.15); transition: all 0.15s;">
+      ☕ Buy Me a Coffee
+    </a>
+  </div>
+
+  <p>© 2026 WealthPath Capital Utilities. Open-source, client-side math execution layout.</p>
+  <p class="footer-disc">Disclaimer: General mathematical modeling equations provided exclusively for objective educational exploration. Financial markets imply inherent portfolio asset downside variances. Consult with credentialed specialized investment, legal, and financial tax planning advisors before implementing asset deployment actions.</p>
 </footer>
 
 <!-- ══ CALCULATOR ENGINES & GRAPHICS ══ -->
 <script>
-// Global configuration and state management
 let ciChartInstance = null;
 let sgChartInstance = null;
 let retChartInstance = null;
 let infChartInstance = null;
 let cmpChartInstance = null;
-let selectedCiFreq = 4; // Default to quarterly
+let selectedCiFreq = 4;
 
-// Format numbers as currency
 function fmt(val) {
   return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
 }
 
-// Chart.js Global Typography Customization
 if (typeof Chart !== 'undefined') {
   Chart.defaults.color = 'rgba(255, 255, 255, 0.4)';
   Chart.defaults.font.family = "'Space Mono', monospace";
   Chart.defaults.font.size = 9;
 }
 
-// Handle compounding frequency toggle row
 function setFreq(btn) {
   const row = document.getElementById('ci-freq-row');
   row.querySelectorAll('.tog').forEach(b => b.classList.remove('on'));
@@ -471,7 +419,6 @@ function setFreq(btn) {
   ciUpdate();
 }
 
-// ── 1. COMPOUND INTEREST ENGINE ──
 function ciUpdate() {
   const pv = parseFloat(document.getElementById('ci-pv').value);
   const pmt = parseFloat(document.getElementById('ci-pmt').value);
@@ -492,7 +439,6 @@ function ciUpdate() {
   let tbodyHtml = '';
 
   for (let y = 1; y <= yrs; y++) {
-    // Standard future value formula accounting for continuous payments inside compound intervals
     for (let m = 1; m <= 12; m++) {
       balance += pmt;
       totalContrib += pmt;
@@ -521,7 +467,6 @@ function ciUpdate() {
   document.getElementById('ci-roi').innerText = roi.toFixed(1) + '%';
   document.getElementById('ci-tbody').innerHTML = tbodyHtml;
 
-  // Render hero component synchronization badge
   document.getElementById('heroNum').innerText = fmt(balance);
   document.getElementById('ci-final-sub').innerText = `Starting with ${fmt(pv)}`;
 
@@ -532,15 +477,14 @@ function ciUpdate() {
     data: {
       labels: labels,
       datasets: [
-        { label: 'Balance', data: balanceData, borderColor: '#daa520', backgroundColor: 'rgba(218,165,32,0.1)', fill: true, tension: 0.1 },
-        { label: 'Contributions', data: contribData, borderColor: 'rgba(255,255,255,0.4)', borderDash: [5,5], fill: false, tension: 0.1 }
+        { label: 'Portfolio Position', data: balanceData, borderColor: '#daa520', backgroundColor: 'rgba(218,165,32,0.1)', fill: true, tension: 0.1 },
+        { label: 'Outlay Deposits', data: contribData, borderColor: 'rgba(255,255,255,0.4)', borderDash: [5,5], fill: false, tension: 0.1 }
       ]
     },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(255,255,255,0.05)' } } } }
   });
 }
 
-// ── 2. SAVINGS GOAL ENGINE ──
 function sgUpdate() {
   const goal = parseFloat(document.getElementById('sg-goal').value);
   const yrs = parseInt(document.getElementById('sg-yrs').value);
@@ -592,13 +536,12 @@ function sgUpdate() {
     type: 'bar',
     data: {
       labels: labels,
-      datasets: [{ label: 'Progress Projection', data: balanceData, backgroundColor: '#2563eb', borderRadius: 2 }]
+      datasets: [{ label: 'Capital Path Accumulation', data: balanceData, backgroundColor: '#2563eb', borderRadius: 2 }]
     },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(255,255,255,0.05)' } } } }
   });
 }
 
-// ── 3. RETIREMENT ENGINE ──
 function retUpdate() {
   const currentAge = parseInt(document.getElementById('ret-age').value);
   const retireAge = parseInt(document.getElementById('ret-ret').value);
@@ -641,12 +584,12 @@ function retUpdate() {
   surplusEl.innerText = fmt(Math.abs(delta));
   if (delta >= 0) {
     surplusEl.className = "res-val gold";
-    verdictEl.innerText = `🎉 Safe Track: Your safe withdrawal rate produces a surplus of ${fmt(delta)}/mo over your budget.`;
+    verdictEl.innerText = `🎉 Safe Track Asset Equilibrium: Your systematic distribution models reveal a monthly surplus allowance of ${fmt(delta)}.`;
     verdictEl.style.background = "rgba(45,106,79,0.2)";
     verdictEl.style.color = "#a7f3d0";
   } else {
     surplusEl.className = "res-val";
-    verdictEl.innerText = `⚠️ Shortfall Danger: You are short by ${fmt(Math.abs(delta))}/mo. Consider bumping your monthly contribution or shifting retirement age.`;
+    verdictEl.innerText = `⚠️ Capital Concentration Deficit: The target runway indicates a shortfall gap of ${fmt(Math.abs(delta))}/mo. Consider increasing parameters.`;
     verdictEl.style.background = "rgba(155,34,38,0.2)";
     verdictEl.style.color = "#fca5a5";
   }
@@ -657,13 +600,12 @@ function retUpdate() {
     type: 'line',
     data: {
       labels: labels,
-      datasets: [{ label: 'Nest Egg Growth', data: chartData, borderColor: '#40916c', backgroundColor: 'rgba(64,145,108,0.1)', fill: true, tension: 0.1 }]
+      datasets: [{ label: 'Vested Horizon Accumulation', data: chartData, borderColor: '#40916c', backgroundColor: 'rgba(64,145,108,0.1)', fill: true, tension: 0.1 }]
     },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(255,255,255,0.05)' } } } }
   });
 }
 
-// ── 4. INFLATION ENGINE ──
 function infUpdate() {
   const amt = parseFloat(document.getElementById('inf-amt').value);
   const yrs = parseInt(document.getElementById('inf-yrs').value);
@@ -685,23 +627,22 @@ function infUpdate() {
   document.getElementById('inf-real').innerText = (netRealReturn * 100).toFixed(1) + '%';
   document.getElementById('inf-nominal').innerText = fmt(nominalInvested);
 
-  document.getElementById('inf-insight').innerText = `In ${yrs} years, an item costing ${fmt(amt)} today will require ${fmt(amt * Math.pow(1 + infRate, yrs))} out of pocket due to inflation.`;
+  document.getElementById('inf-insight').innerText = `Across a ${yrs}-year systemic projection layout, consumer basket assets initially costing ${fmt(amt)} will require a liquid total capital outlay of ${fmt(amt * Math.pow(1 + infRate, yrs))} to purchase.`;
 
   if (infChartInstance) infChartInstance.destroy();
   const ctx = document.getElementById('infChart').getContext('2d');
   infChartInstance = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Cash vs Inflation', 'Investment Buying Power'],
+      labels: ['Fiat Position Decline', 'Real Adjusted Invested Power'],
       datasets: [
-        { label: 'Purchasing Power', data: [Math.round(futurePurchasingPower), Math.round(realValueInvested)], backgroundColor: ['#9b2226', '#2d6a4f'] }
+        { label: 'Real Asset Value', data: [Math.round(futurePurchasingPower), Math.round(realValueInvested)], backgroundColor: ['#9b2226', '#2d6a4f'] }
       ]
     },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(255,255,255,0.05)' } } } }
   });
 }
 
-// ── 5. INVEST VS CASH ENGINE ──
 function cmpUpdate() {
   const amt = parseFloat(document.getElementById('cmp-amt').value);
   const yrs = parseInt(document.getElementById('cmp-yrs').value);
@@ -728,22 +669,22 @@ function cmpUpdate() {
 
   let barsHtml = `
     <div class="comp-bar-wrap">
-      <div class="comp-bar-label"><span>Market Investment (${(invRate*100).toFixed(1)}%)</span><span>${fmt(finalInvested)}</span></div>
+      <div class="comp-bar-label"><span>Equity Core Index Portfolio Allocation</span><span>${fmt(finalInvested)}</span></div>
       <div class="comp-bar-track"><div class="comp-bar-fill" style="width:${pctInv}%; background:#40916c"></div></div>
     </div>
     <div class="comp-bar-wrap">
-      <div class="comp-bar-label"><span>High-Yield Savings (${(savRate*100).toFixed(1)}%)</span><span>${fmt(finalSavings)}</span></div>
+      <div class="comp-bar-label"><span>High-Yield Cash Position Assets</span><span>${fmt(finalSavings)}</span></div>
       <div class="comp-bar-track"><div class="comp-bar-fill" style="width:${pctSav}%; background:#daa520"></div></div>
     </div>
     <div class="comp-bar-wrap">
-      <div class="comp-bar-label"><span>Uninvested Cash (Real Purchasing Power)</span><span>${fmt(finalCashPurchasingPower)}</span></div>
+      <div class="comp-bar-label"><span>Unallocated Base Fiat Holdings (Purchasing Capacity)</span><span>${fmt(finalCashPurchasingPower)}</span></div>
       <div class="comp-bar-track"><div class="comp-bar-fill" style="width:${pctCash}%; background:#9b2226"></div></div>
     </div>
   `;
   document.getElementById('cmp-bars').innerHTML = barsHtml;
 
   const deltaOpportunity = finalInvested - finalSavings;
-  document.getElementById('cmp-verdict').innerText = `By choosing market investing over high-yield savings in this timeline, your structural capital yield gains an additional net optimization advantage of ${fmt(deltaOpportunity)}.`;
+  document.getElementById('cmp-verdict').innerText = `Selecting direct market index integration over liquid bank placement yields a programmatic systemic structural benefit delta of ${fmt(deltaOpportunity)} inside this modeled scenario framework.`;
 
   let labels = [];
   let invTrack = [];
@@ -765,16 +706,15 @@ function cmpUpdate() {
     data: {
       labels: labels,
       datasets: [
-        { label: 'Invested', data: invTrack, borderColor: '#40916c', fill: false, tension: 0.1 },
-        { label: 'Savings', data: savTrack, borderColor: '#daa520', fill: false, tension: 0.1 },
-        { label: 'Cash Power', data: cashTrack, borderColor: '#9b2226', fill: false, tension: 0.1 }
+        { label: 'Market Index', data: invTrack, borderColor: '#40916c', fill: false, tension: 0.1 },
+        { label: 'Bank Cash APY', data: savTrack, borderColor: '#daa520', fill: false, tension: 0.1 },
+        { label: 'Real Cash Value', data: cashTrack, borderColor: '#9b2226', fill: false, tension: 0.1 }
       ]
     },
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(255,255,255,0.05)' } } } }
   });
 }
 
-// Global execution wrapper on window paint hook
 window.addEventListener('DOMContentLoaded', () => {
   ciUpdate();
   sgUpdate();
